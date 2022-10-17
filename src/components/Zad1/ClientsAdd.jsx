@@ -1,7 +1,7 @@
-import React from 'react'
+import React from "react";
 
-
-
+import { useFormik } from "formik";
+import * as yup from "yup";
 // # Zadanie 2
 
 // Podstrona na dodawanie klientów implementacja. <br />
@@ -20,13 +20,141 @@ import React from 'react'
 // - [ ] po kliknięciu na kartę klienta przenieś użytkownika na nową podstronę, która wyświetla jego wszystkie dane - detale klienta, dodaj tam przycisk umożliwiający usuwanie klienta, przygotuj statyczne UI,
 // - [ ] w detalach klienta dodaj przycisk edit, który przeniesie użykownika na formularz do edycji klienta, podstrona powinna zawierać przyciski cancel (przenosi na poprzednią stronę) i update (aktualizuje dane), na ten moment formularz statyczny (nie robi nic)
 
-
-
+const yupSchema = yup.object({
+  name: yup.string().min(3).required("name min 3"),
+  surname: yup.string().min(3).required("surname min 3"),
+  street: yup.string().min(5).required("street min 5"),
+  // code: yup
+  //   .number(5)
+  //   .matches(/^[0-9]{5}/)
+  //   .required("2cyfry - 3 cyfry"),
+  city: yup.string().min(3).required("city min 3"),
+  region: yup.string().min(3).required("region min 3"),
+  imageURL: yup.string().min(5).required("image"),
+  // number: yup.string().includes("+11").required("DO +11"),
+});
 
 const ClientsAdd = () => {
-  return (
-    <div>ClientsAdd</div>
-  )
-}
+  const formik = useFormik({
+    initialValues: {
+      name: "",
+      surname: "",
 
-export default ClientsAdd
+      street: "",
+      code: "",
+      city: "",
+      region: "",
+      imageURL: "",
+      number: "",
+    },
+    onSubmit: (values) => {
+      alert(JSON.stringify(values, null, 2));
+    },
+    validationSchema: yupSchema, //wpięcie schematu walidacji
+  });
+
+  return (
+    <div className="clientsAdd">
+      <div>ClientsAdd</div>
+      <form onSubmit={formik.handleSubmit}>
+        <div>
+          <label htmlFor="name">Name</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.name}
+          />
+        </div>
+        <div>
+          <label htmlFor="surname">Surname</label>
+          <input
+            type="text"
+            id="surname"
+            name="surname"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.surname}
+          />
+        </div>
+
+        <div>
+          <label htmlFor="street">Street</label>
+          <input
+            type="text"
+            id="street"
+            name="street"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.street}
+          />
+        </div>
+        <div>
+          <label htmlFor="code">Post-Code</label>
+          <input
+            type="text"
+            id="code"
+            name="code"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.code}
+          />
+        </div>
+        <div>
+          <label htmlFor="city">City</label>
+          <input
+            type="text"
+            id="city"
+            name="city"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.city}
+          />
+        </div>
+        <div>
+          <label htmlFor="region">Region</label>
+          <input
+            type="text"
+            id="region"
+            name="region"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.region}
+          />
+        </div>
+        <div>
+          <label htmlFor="imageURL">imageURL</label>
+          <input
+            type="text"
+            id="imageURL"
+            name="imageURL"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.imageURL}
+          />
+        </div>
+        <div>
+          <label htmlFor="number">Number</label>
+          <input
+            type="text"
+            id="number"
+            name="number"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.number}
+          />
+        </div>
+
+        <button type="submit">Send</button>
+      </form>
+
+      {formik.touched.name && formik.errors.name ? (
+        <p style={{ color: "red" }}>{formik.errors.name}</p>
+      ) : null}
+    </div>
+  );
+};
+
+export default ClientsAdd;
