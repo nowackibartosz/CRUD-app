@@ -20,21 +20,23 @@ import * as yup from "yup";
 // - [ ] po kliknięciu na kartę klienta przenieś użytkownika na nową podstronę, która wyświetla jego wszystkie dane - detale klienta, dodaj tam przycisk umożliwiający usuwanie klienta, przygotuj statyczne UI,
 // - [ ] w detalach klienta dodaj przycisk edit, który przeniesie użykownika na formularz do edycji klienta, podstrona powinna zawierać przyciski cancel (przenosi na poprzednią stronę) i update (aktualizuje dane), na ten moment formularz statyczny (nie robi nic)
 
+
+
 const yupSchema = yup.object({
   name: yup.string().min(3).required("name min 3"),
   surname: yup.string().min(3).required("surname min 3"),
   street: yup.string().min(5).required("street min 5"),
-  // code: yup
-  //   .number(5)
-  //   .matches(/^[0-9]{5}/)
-  //   .required("2cyfry - 3 cyfry"),
+  code: yup.number(5).min(5).required("2cyfry - 3 cyfry"),
+  // code: yup.number(5).matches(/^[0-9]{5}$/, "Must be exactly 5 digits"),
+
+  // .matches(/d{2}-d{3}/)
   city: yup.string().min(3).required("city min 3"),
   region: yup.string().min(3).required("region min 3"),
   imageURL: yup.string().min(5).required("image"),
   // number: yup.string().includes("+11").required("DO +11"),
 });
 
-const ClientsAdd = () => {
+const ClientsAdd = ({ clientData }) => {
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -49,6 +51,8 @@ const ClientsAdd = () => {
     },
     onSubmit: (values) => {
       alert(JSON.stringify(values, null, 2));
+      clientData.push(values);
+      console.log(clientData);
     },
     validationSchema: yupSchema, //wpięcie schematu walidacji
   });
@@ -152,6 +156,27 @@ const ClientsAdd = () => {
 
       {formik.touched.name && formik.errors.name ? (
         <p style={{ color: "red" }}>{formik.errors.name}</p>
+      ) : null}
+      {formik.touched.surname && formik.errors.surname ? (
+        <p style={{ color: "red" }}>{formik.errors.surname}</p>
+      ) : null}
+      {formik.touched.street && formik.errors.street ? (
+        <p style={{ color: "red" }}>{formik.errors.street}</p>
+      ) : null}
+      {formik.touched.code && formik.errors.code ? (
+        <p style={{ color: "red" }}>{formik.errors.code}</p>
+      ) : null}
+      {formik.touched.city && formik.errors.city ? (
+        <p style={{ color: "red" }}>{formik.errors.city}</p>
+      ) : null}
+      {formik.touched.region && formik.errors.region ? (
+        <p style={{ color: "red" }}>{formik.errors.region}</p>
+      ) : null}
+      {formik.touched.imageURL && formik.errors.imageURL ? (
+        <p style={{ color: "red" }}>{formik.errors.imageURL}</p>
+      ) : null}
+      {formik.touched.number && formik.errors.mumber ? (
+        <p style={{ color: "red" }}>{formik.errors.mumber}</p>
       ) : null}
     </div>
   );

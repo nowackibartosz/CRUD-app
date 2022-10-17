@@ -1,4 +1,4 @@
-import Clients from "./components/Zad1/Clients";
+import Clients from "./components/Zad1/Clients/Clients";
 import ClientsAdd from "./components/Zad1/ClientsAdd";
 import Navigation from "./components/Nav/Navigation";
 import ClientsId from "./components/Zad1/ClientsId";
@@ -13,8 +13,6 @@ import "./App.css";
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-
-
 // # Zadanie 1
 
 // Stwórz routing aplikacji (bazując na poprzednich zadaniach). Potrzebne będą:
@@ -27,9 +25,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 // * /orders/add -> podstrona na dodawanie zamowien,
 // * /invoices - > podstrona na faktury,
 
-
-
-
+const clientData = [];
 
 function App() {
   return (
@@ -38,8 +34,16 @@ function App() {
         <Navigation />
         <Routes>
           <Route element={<div>Main Page</div>} path="" />
-          <Route exact path="/clients" element={<Clients />}></Route>
-          <Route exact path="/clients/add" element={<ClientsAdd />}></Route>
+          <Route
+            exact
+            path="/clients"
+            element={<Clients clientData={clientData} />}
+          ></Route>
+          <Route
+            exact
+            path="/clients/add"
+            element={<ClientsAdd clientData={clientData} />}
+          ></Route>
           <Route exact path="/clients/:id" element={<ClientsId />}></Route>
           <Route
             exact
