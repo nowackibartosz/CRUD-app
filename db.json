@@ -1,0 +1,32 @@
+{
+  "clients": [
+    {
+      "name": "adam",
+      "surname": "nowak",
+      "street": "langiewicza",
+      "code": "45-988",
+      "city": "Wroclaw",
+      "region": "Wroclawski",
+      "imageURL": "imageimage",
+      "number": "8888",
+      "id": 4
+    },
+    {
+      "name": "te",
+      "surname": "Jochemczyk",
+      "street": "te",
+      "code": "t",
+      "city": "2",
+      "region": "3ew",
+      "imageURL": "www",
+      "number": "3",
+      "id": 5
+    }
+  ],
+  "orders": [
+    {
+      "id": 1,
+      "body": "zamawiam drewno"
+    }
+  ]
+}

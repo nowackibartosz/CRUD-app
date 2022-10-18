@@ -19,6 +19,8 @@ const yupSchema = yup.object({
 });
 
 
+///validacje mozna trzymac w oddzielnym 
+
 
 
 
@@ -37,7 +39,7 @@ const ClientsIdEdit = ({clientData }) => {
       number: clientData[id].number,
 
     },
-
+    enableReinitialize: true,
     onSubmit: (values) => {
       
       clientData[id].push(values);

@@ -12,6 +12,13 @@ import Invoice from "./components/Zad1/Invoice";
 import "./App.css";
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import {
+  QueryClient,
+  QueryClientProvider,
+} from "@tanstack/react-query";
+
+//Tworzymy klienta
+const queryClient=new QueryClient()
 
 // # Zadanie 1
 
@@ -30,6 +37,7 @@ const clientData = [];
 function App() {
   return (
     <div className="App">
+      <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <Navigation />
         <Routes>
@@ -72,6 +80,7 @@ function App() {
           </Route>
           <Route element={<div>404</div>} path="*" /> */}
       </BrowserRouter>
+      </QueryClientProvider>
     </div>
   );
 }

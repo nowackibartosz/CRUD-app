@@ -1,10 +1,25 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import "./Clients.css";
 import { Link } from "react-router-dom";
-import { useParams } from "react-router-dom";
+import {useQuery} from "@tanstack/react-query"
+
+const getAllClients=async ()=>{
+const response = await fetch(`http://localhost:3000/clients`);
+  if (!response.ok) {
+    return [];
+  }
+  const data = await response.json();
+  return data;
+}
 
 const Clients = ({ clientData }) => {
-  const { id } = useParams();
+  
+  const {data,isLoading,error}=useQuery(["clients"],getAllClients)
+
+  if(isLoading){
+    return <p>Loading...</p>
+  }
+
   return (
     <div className="clients">
       <div>Clients</div>
@@ -21,9 +36,11 @@ const Clients = ({ clientData }) => {
           </tr>
         </thead>
         <tbody>
-          {clientData.map((el, ido) => (
-            <tr key={id}>
-              <Link to={`/clients/${ido}`}><th>{el.name}</th></Link>
+{/*sprobowac za pomoca nie tabeli - GRIDEM :) */}
+          
+          {data.map((el) => (
+            <tr key={el.id}>
+              <Link to={`/clients/${el.id}`}><th>{el.name}</th></Link>
               <th>{el.surname}</th>
               <th>{el.city}</th>
               <th>{el.number}</th>

@@ -1,25 +1,46 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
+
+const getSingleClient = async (clientId) => {
+  const response = await fetch(`http://localhost:3000/clients/${clientId}`);
+  if(!response.ok){
+    return {}
+  }
+  const data=await response.json();
+  return data;
+};
 
 const ClientsId = ({ clientData }) => {
   const { id } = useParams();
 
+  const [data,setData]=useState({})
+
+  useEffect(()=>{
+    getSingleClient(id).then(data=>{
+      setData(data)
+    })
+  },[])
+
+  const handleDelete=(id)=>{
+    fetch(`http://localhost:3000/clients/${id}`,{
+      method: "DELETE"
+    })
+  }
+
   return (
     <div className="detailsID">
-      <p>{clientData[id].name}</p>
-      <p>{clientData[id].surname}</p>
-      <p>{clientData[id].street}</p>
-      <p>{clientData[id].code}</p>
-      <p>{clientData[id].city}</p>
-      <p>{clientData[id].region}</p>
-      <p>{clientData[id].imageURL}</p>
-      <p>{clientData[id].number}</p>
+      <p>{data.name}</p>
+      <p>{data.surname}</p>
+      <p>{data.street}</p>
+      <p>{data.code}</p>
+      <p>{data.city}</p>
+      <p>{data.region}</p>
+      <p>{data.imageURL}</p>
+      <p>{data.number}</p>
 
       <button
-        onClick={() => {
-          clientData.splice({ id }, 1);
-        }}
+        onClick={() => handleDelete(data.id)}
       >
         USUŃ
       </button>
