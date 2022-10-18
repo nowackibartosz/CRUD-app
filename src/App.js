@@ -52,7 +52,7 @@ function App() {
           <Route
             exact
             path="/clients/:id/edit"
-            element={<ClientsIdEdit />}
+            element={<ClientsIdEdit clientData={clientData} />}
           ></Route>
 
           <Route exact path="/orders" element={<Orders />}></Route>
