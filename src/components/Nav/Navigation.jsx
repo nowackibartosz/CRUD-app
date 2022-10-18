@@ -15,18 +15,18 @@ const Navigation = () => {
           <li>
             <Link to="/clients/add">Clients Add</Link>
           </li>
-          <li>
+          {/* <li>
             <Link to="/clients/:id">Clients Id </Link>
-          </li>
-          <li>
+          </li> */}
+          {/* <li>
             <Link to="/clients/:id/edit">Clients Id edit</Link>
-          </li>
+          </li> */}
           <li>
             <Link to="/orders">Orders</Link>
           </li>
-          <li>
+          {/* <li>
             <Link to="/orders/:id">Orders ID</Link>
-          </li>
+          </li> */}
           <li>
             <Link to="/orders/add">Orders Add</Link>
           </li>

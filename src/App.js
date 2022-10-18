@@ -44,7 +44,11 @@ function App() {
             path="/clients/add"
             element={<ClientsAdd clientData={clientData} />}
           ></Route>
-          <Route exact path="/clients/:id" element={<ClientsId />}></Route>
+          <Route
+            exact
+            path="/clients/:id"
+            element={<ClientsId clientData={clientData} />}
+          ></Route>
           <Route
             exact
             path="/clients/:id/edit"
