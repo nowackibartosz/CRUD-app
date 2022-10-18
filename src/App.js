@@ -57,7 +57,7 @@ function App() {
 
           <Route exact path="/orders" element={<Orders />}></Route>
           <Route exact path="/orders/:id" element={<OrdersId />}></Route>
-          <Route exact path="/orders/add" element={<OrdersAdd />}></Route>
+          <Route exact path="/orders/add" element={<OrdersAdd clientData={clientData} />}></Route>
           <Route exact path="/invoices" element={<Invoice />}></Route>
         </Routes>
 
