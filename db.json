@@ -1,25 +1,58 @@
 {
   "clients": [
     {
-      "name": "adam",
-      "surname": "nowak",
+      "name": "Bartek",
+      "surname": "Nowacki",
       "street": "langiewicza",
       "code": "45-988",
       "city": "Wroclaw",
       "region": "Wroclawski",
       "imageURL": "imageimage",
       "number": "8888",
+      "id": 1
+    },
+    {
+      "name": "Tomasz",
+      "surname": "Niemasz",
+      "street": "Wieluńska",
+      "code": "66-988",
+      "city": "Wieluń",
+      "region": "chybatak",
+      "imageURL": "imageimage",
+      "number": "85567888",
+      "id": 1
+    },
+    {
+      "name": "Bogdan",
+      "surname": "Gurby",
+      "street": "Legnicka",
+      "code": "51-107",
+      "city": "Wrocław",
+      "region": "dolnośląskie",
+      "imageURL": "zdolnyslask.pl",
+      "number": "788366088",
+      "id": 3
+    },
+    {
+      "name": "Adam",
+      "surname": "Jochemczyk",
+      "street": "Leśna",
+      "code": "51-600",
+      "city": "Dziwnów",
+      "region": "morskie",
+      "imageURL": "wodawoda",
+      "number": "123456",
       "id": 4
     },
     {
-      "name": "te",
-      "surname": "Jochemczyk",
-      "street": "te",
-      "code": "t",
-      "city": "2",
-      "region": "3ew",
-      "imageURL": "www",
-      "number": "3",
+      "name": "Jan",
+      "surname": "Błachowicz",
+      "street": "Leśna",
+      "code": "51-888",
+      "city": "Kraków",
+      "region": "małopolskie",
+      "imageURL": "mma",
+      "number": "33488455",
       "id": 5
     }
   ],
@@ -27,6 +60,22 @@
     {
       "id": 1,
       "body": "zamawiam drewno"
+    },
+    {
+      "id": 2,
+      "body": "zamawiam zboże"
+    },
+    {
+      "id": 3,
+      "body": "koszenie trawy"
+    },
+    {
+      "id": 4,
+      "body": "wylewka betonu"
+    },
+    {
+      "id": 5,
+      "body": "klaskanie"
     }
   ]
 }
