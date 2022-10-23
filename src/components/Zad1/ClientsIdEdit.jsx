@@ -3,59 +3,74 @@ import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useFormik } from "formik";
 import * as yup from "yup";
+import { useState, useEffect } from "react";
 
 const yupSchema = yup.object({
-  name: yup.string().min(3).required("name min 3"),
+  name: yup.string().min(3, "name min 3").required("required"), ///przerobić error
   surname: yup.string().min(3).required("surname min 3"),
   street: yup.string().min(5).required("street min 5"),
-  code: yup.number(5).min(5).required("2cyfry - 3 cyfry"),
-  // code: yup.number(5).matches(/^[0-9]{5}$/, "Must be exactly 5 digits"),
-
-  // .matches(/d{2}-d{3}/)
+  code: yup.string().matches(/^[0-9]{2}-[0-9]{3}/, "Nie pasuje regex"),
   city: yup.string().min(3).required("city min 3"),
-  region: yup.string().min(3).required("region min 3"),
+  region: yup.string().min(3, "min 3 letters"),
   imageURL: yup.string().min(5).required("image"),
   // number: yup.string().includes("+11").required("DO +11"),
 });
 
+///validacje mozna trzymac w oddzielnym
 
-///validacje mozna trzymac w oddzielnym 
+const getEditSingleClient = async (clientId) => {
+  const response = await fetch(`http://localhost:3000/clients/${clientId}`);
+  if (!response.ok) {
+    return {};
+  }
+  const data = await response.json();
+  return data;
+};
 
-
-
-
-
-const ClientsIdEdit = ({clientData }) => {
+const ClientsIdEdit = ({ clientData }) => {
   const { id } = useParams();
+
+  const [data, setData] = useState({});
+
+  useEffect(() => {
+    getEditSingleClient(id).then((data) => {
+      setData(data);
+    });
+  }, []);
+
+  const handleUpdate = (id) => {
+    fetch(`http://localhost:3000/clients/${id}`, {
+      method: "PUT",
+    });
+  };
 
   const formik = useFormik({
     initialValues: {
-      name: clientData[id].name,
-      surname: clientData[id].surname,
-      street: clientData[id].street,
-      code: clientData[id].code,
-      city: clientData[id].city,
-      region: clientData[id].region,
-      number: clientData[id].number,
-
+      name: data.name,
+      surname: data.surname,
+      street: data.street,
+      code: data.code,
+      city: data.city,
+      region: data.region,
+      number: data.number,
     },
     enableReinitialize: true,
     onSubmit: (values) => {
-      
-      clientData[id].push(values);
-      console.log(clientData)
+      setData(prev) => {
+
+      };
+      handleUpdate(data.id);
+
+      // clientData[id].push(values);
+      // console.log(clientData)
       ///??????????????????????////
-    
     },
     validationSchema: yupSchema, //wpięcie schematu walidacji
   });
 
-
-
   return (
     <div>
-     
-     <form onSubmit={formik.handleSubmit}>
+      <form onSubmit={formik.handleSubmit}>
         <div>
           <label htmlFor="name">Name</label>
           <input
@@ -174,10 +189,9 @@ const ClientsIdEdit = ({clientData }) => {
         <p style={{ color: "red" }}>{formik.errors.mumber}</p>
       ) : null}
 
+      <br />
+      <br />
 
-      <br />
-      <br />
-      
       <Link to={`/clients/${id}`}>
         {" "}
         <button>Cancel</button>

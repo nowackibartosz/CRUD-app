@@ -4,7 +4,7 @@ import Navigation from "./components/Nav/Navigation";
 import ClientsId from "./components/Zad1/ClientsId";
 
 import ClientsIdEdit from "./components/Zad1/ClientsIdEdit";
-import Orders from "./components/Zad1/Orders";
+import Orders from "./components/Zad1/Orders/Orders";
 import OrdersAdd from "./components/Zad1/OrdersAdd";
 import OrdersId from "./components/Zad1/OrdersId";
 import Invoice from "./components/Zad1/Invoice";
