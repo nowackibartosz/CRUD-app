@@ -1,32 +1,18 @@
-import React,{useState,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
+import { getSingleClient, handleDelete } from "../Serwis/orderService";
 
-const getSingleClient = async (clientId) => {
-  const response = await fetch(`http://localhost:3000/clients/${clientId}`);
-  if(!response.ok){
-    return {}
-  }
-  const data=await response.json();
-  return data;
-};
-
-const ClientsId = ({ clientData }) => {
+const ClientsId = () => {
   const { id } = useParams();
 
-  const [data,setData]=useState({})
+  const [data, setData] = useState({});
 
-  useEffect(()=>{
-    getSingleClient(id).then(data=>{
-      setData(data)
-    })
-  },[])
-
-  const handleDelete=(id)=>{
-    fetch(`http://localhost:3000/clients/${id}`,{
-      method: "DELETE"
-    })
-  }
+  useEffect(() => {
+    getSingleClient(id).then((data) => {
+      setData(data);
+    });
+  }, []);
 
   return (
     <div className="detailsID">
@@ -39,11 +25,7 @@ const ClientsId = ({ clientData }) => {
       <p>{data.imageURL}</p>
       <p>{data.number}</p>
 
-      <button
-        onClick={() => handleDelete(data.id)}
-      >
-        USUŃ
-      </button>
+      <button onClick={() => handleDelete(data.id)}>USUŃ</button>
 
       <Link to={`/clients/${id}/edit`}>
         {" "}

@@ -54,17 +54,6 @@
       "imageURL": "mma",
       "number": "33488455",
       "id": 5
-    },
-    {
-      "name": "Janko",
-      "surname": "Muzykant",
-      "street": "Muzykalan",
-      "code": "51-666",
-      "city": "Brselau",
-      "region": "dolnoslaskie",
-      "imageURL": "kjlkjkljlkj",
-      "number": "111222333",
-      "id": 6
     }
   ],
   "orders": [

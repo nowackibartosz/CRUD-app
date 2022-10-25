@@ -2,17 +2,11 @@ import React,{useState,useEffect} from "react";
 import "./Clients.css";
 import { Link } from "react-router-dom";
 import {useQuery} from "@tanstack/react-query"
+import { getAllClients } from "../../Serwis/orderService";
 
-const getAllClients=async ()=>{
-const response = await fetch(`http://localhost:3000/clients`);
-  if (!response.ok) {
-    return [];
-  }
-  const data = await response.json();
-  return data;
-}
 
-const Clients = ({ clientData }) => {
+
+const Clients = () => {
   
   const {data,isLoading,error}=useQuery(["clients"],getAllClients)
 

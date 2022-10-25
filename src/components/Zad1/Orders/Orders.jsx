@@ -5,7 +5,7 @@ import { getAllOrders } from "../../Serwis/orderService";
 
 
 
-const Orders = ({ clientsData }) => {
+const Orders = () => {
   const { data, isLoading, error } = useQuery(["orders"], getAllOrders);
 
   if (isLoading) {
