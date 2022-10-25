@@ -18,9 +18,25 @@ export const getSingleClient = async (clientId) => {
     return data;
   };
   
+//   export const getEditSingleClient = async (values, clientId) => {
+//       const response = await fetch(`http://localhost:3000/clients/${clientId}`,{
+
+//         method: "PUT",
+//          headers: {"Content-type": "application/json;charset=UTF-8"},
+//         body: JSON.stringify(values),
+//       });
+//     if (!response.ok) {
+//       return {};
+//     }
+//     const data = await response.json();
+//     return data;
+//   };
+
+
 
 export const addClient=async (values)=>{
     const response = await fetch(`http://localhost:3000/clients`, {
+
         method: "POST",
          headers: {"Content-type": "application/json;charset=UTF-8"},
         body: JSON.stringify(values),
@@ -32,15 +48,20 @@ export const addClient=async (values)=>{
       return data;
   }
   
+  export const addClient1=async (values, id)=>{
+    const response = await fetch(`http://localhost:3000/clients/${id}`, {
 
-  export const getEditSingleClient = async (clientId) => {
-    const response = await fetch(`http://localhost:3000/clients/${clientId}`);
-    if (!response.ok) {
-      return {};
-    }
-    const data = await response.json();
-    return data;
-  };
+        method: "POST",
+         headers: {"Content-type": "application/json;charset=UTF-8"},
+        body: JSON.stringify(values),
+      });
+      if (!response.ok) {
+        return {};
+      }
+      const data = await response.json();
+      return data;
+  }
+ 
 
   export const handleDelete=(id)=>{
     fetch(`http://localhost:3000/clients/${id}`,{

@@ -5,7 +5,7 @@ import { useFormik } from "formik";
 import { yupSchema } from "../Validation/Val";
 import { useState, useEffect } from "react";
 
-import { addClient, getEditSingleClient } from "../Serwis/orderService";
+import { addClient1, getEditSingleClient } from "../Serwis/orderService";
 
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
@@ -17,14 +17,14 @@ const ClientsIdEdit = () => {
   const [data, setData] = useState({});
 
   useEffect(() => {
-    getEditSingleClient(id).then((data) => {
+    addClient1(id).then((data) => {
       setData(data);
     });
   }, []);
 
   const queryClient = useQueryClient();
 
-  const mutation = useMutation(getEditSingleClient, {
+  const mutation = useMutation(addClient1, {
     onSuccess: () => {
       // rewalidacja i pobranie ponownie zapytania pod kluczem orders
       queryClient.invalidateQueries(["clients"]);

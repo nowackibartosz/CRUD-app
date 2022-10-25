@@ -54,6 +54,19 @@
       "imageURL": "mma",
       "number": "33488455",
       "id": 5
+    },
+    {
+      "values": {
+        "name": "Andrzej",
+        "surname": "nowak",
+        "street": "langiewicza",
+        "code": "45-988",
+        "city": "Wroclaw",
+        "region": "Wroclawski",
+        "number": "8888",
+        "imageURL": "imageimage"
+      },
+      "id": 6
     }
   ],
   "orders": [

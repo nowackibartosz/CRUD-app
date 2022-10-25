@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from "react";
+
 import "./Clients.css";
 import { Link } from "react-router-dom";
 import {useQuery} from "@tanstack/react-query"
@@ -8,7 +8,7 @@ import { getAllClients } from "../../Serwis/orderService";
 
 const Clients = () => {
   
-  const {data,isLoading,error}=useQuery(["clients"],getAllClients)
+  const {data,isLoading}=useQuery(["clients"],getAllClients)
 
   if(isLoading){
     return <p>Loading...</p>
