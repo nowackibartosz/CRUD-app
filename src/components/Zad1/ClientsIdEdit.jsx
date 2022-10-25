@@ -24,10 +24,13 @@ const ClientsIdEdit = () => {
 
   const queryClient = useQueryClient();
 
-  const mutation = useMutation(getEditSingleClient, {
+  const mutation = useMutation(getSingleClient(id), {
     onSuccess: () => {
       // rewalidacja i pobranie ponownie zapytania pod kluczem orders
-      queryClient.invalidateQueries([`clients/${id}`]);
+      queryClient.invalidateQueries([`clients`]);
+
+      ///?????????/////////
+      ///////  queryClient.invalidateQueries([`clients/${id}`]);//////
     },
     onError: () => {
       console.log("Cos poszlo nie tak");
@@ -47,7 +50,7 @@ const ClientsIdEdit = () => {
     enableReinitialize: true,
 
     onSubmit: (values) => {
-      mutation.mutate({ values });
+      mutation.mutate(setData(values));
       console.log("ok");
     },
     validationSchema: yupSchema, //wpięcie schematu walidacji
