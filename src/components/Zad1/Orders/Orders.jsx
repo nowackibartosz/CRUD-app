@@ -1,14 +1,9 @@
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import "./Orders.css";
-export const getAllOrders = async () => {
-  const response = await fetch(`http://localhost:3000/orders`);
-  if (!response.ok) {
-    return [];
-  }
-  const data = await response.json();
-  return data;
-};
+import { getAllOrders } from "../../Serwis/orderService";
+
+
 
 const Orders = ({ clientsData }) => {
   const { data, isLoading, error } = useQuery(["orders"], getAllOrders);

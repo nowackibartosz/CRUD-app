@@ -5,6 +5,9 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import { useState, useEffect } from "react";
 
+import { addClient, getEditSingleClient } from "../Serwis/orderService";
+
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 const yupSchema = yup.object({
   name: yup.string().min(3, "name min 3").required("required"), ///przerobić error
   surname: yup.string().min(3).required("surname min 3"),
@@ -18,15 +21,6 @@ const yupSchema = yup.object({
 
 ///validacje mozna trzymac w oddzielnym
 
-const getEditSingleClient = async (clientId) => {
-  const response = await fetch(`http://localhost:3000/clients/${clientId}`);
-  if (!response.ok) {
-    return {};
-  }
-  const data = await response.json();
-  return data;
-};
-
 const ClientsIdEdit = ({ clientData }) => {
   const { id } = useParams();
 
@@ -38,10 +32,21 @@ const ClientsIdEdit = ({ clientData }) => {
     });
   }, []);
 
-  const handleUpdate = (id) => {
-    fetch(`http://localhost:3000/clients/${id}`, {
-      method: "PUT",
-    });
+  const queryClient = useQueryClient();
+
+  const mutation = useMutation(addClient, {
+    onSuccess: () => {
+      // rewalidacja i pobranie ponownie zapytania pod kluczem orders
+      queryClient.invalidateQueries(["clients"]);
+    },
+    onError: () => {
+      console.log("Cos poszlo nie tak");
+    },
+  });
+
+  const handleAdd = () => {
+    //wykorzystanie mutacji
+    mutation.mutate({ formik });
   };
 
   const formik = useFormik({
@@ -55,11 +60,9 @@ const ClientsIdEdit = ({ clientData }) => {
       number: data.number,
     },
     enableReinitialize: true,
-    onSubmit: (values) => {
-      setData(prev) => {
 
-      };
-      handleUpdate(data.id);
+    onSubmit: (values) => {
+      setData(values);
 
       // clientData[id].push(values);
       // console.log(clientData)
@@ -161,7 +164,9 @@ const ClientsIdEdit = ({ clientData }) => {
           />
         </div>
 
-        <button type="submit">SAVE</button>
+        <button type="submit" onClick={handleAdd}>
+          SAVE
+        </button>
       </form>
 
       {formik.touched.name && formik.errors.name ? (

@@ -2,6 +2,7 @@ import React from "react";
 
 import { useFormik } from "formik";
 import * as yup from "yup";
+import { addClient } from "../Serwis/orderService";
 // # Zadanie 2
 
 // Podstrona na dodawanie klientów implementacja. <br />
@@ -33,18 +34,7 @@ const yupSchema = yup.object({
   // number: yup.string().includes("+11").required("DO +11"),
 });
 
-const addClient=async (values)=>{
-  const response = await fetch(`http://localhost:3000/clients`, {
-      method: "POST",
-       headers: {"Content-type": "application/json;charset=UTF-8"},
-      body: JSON.stringify(values),
-    });
-    if (!response.ok) {
-      return {};
-    }
-    const data = await response.json();
-    return data;
-}
+
 
 const ClientsAdd = ({ clientData }) => {
 

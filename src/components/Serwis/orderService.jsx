@@ -1,0 +1,32 @@
+export const getAllOrders = async () => {
+    const response = await fetch(`http://localhost:3000/orders`);
+    if (!response.ok) {
+      return [];
+    }
+    const data = await response.json();
+    return data;
+};
+  
+
+export const addClient=async (values)=>{
+    const response = await fetch(`http://localhost:3000/clients`, {
+        method: "POST",
+         headers: {"Content-type": "application/json;charset=UTF-8"},
+        body: JSON.stringify(values),
+      });
+      if (!response.ok) {
+        return {};
+      }
+      const data = await response.json();
+      return data;
+  }
+  
+
+  export const getEditSingleClient = async (clientId) => {
+    const response = await fetch(`http://localhost:3000/clients/${clientId}`);
+    if (!response.ok) {
+      return {};
+    }
+    const data = await response.json();
+    return data;
+  };
