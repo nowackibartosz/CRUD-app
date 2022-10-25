@@ -12,13 +12,10 @@ import Invoice from "./components/Zad1/Invoice";
 import "./App.css";
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import {
-  QueryClient,
-  QueryClientProvider,
-} from "@tanstack/react-query";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 //Tworzymy klienta
-const queryClient=new QueryClient()
+const queryClient = new QueryClient();
 
 // # Zadanie 1
 
@@ -32,44 +29,30 @@ const queryClient=new QueryClient()
 // * /orders/add -> podstrona na dodawanie zamowien,
 // * /invoices - > podstrona na faktury,
 
-const clientData = [];
-
 function App() {
   return (
     <div className="App">
       <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
-        <Navigation />
-        <Routes>
-          <Route element={<div>Main Page</div>} path="" />
-          <Route
-            exact
-            path="/clients"
-            element={<Clients clientData={clientData} />}
-          ></Route>
-          <Route
-            exact
-            path="/clients/add"
-            element={<ClientsAdd clientData={clientData} />}
-          ></Route>
-          <Route
-            exact
-            path="/clients/:id"
-            element={<ClientsId clientData={clientData} />}
-          ></Route>
-          <Route
-            exact
-            path="/clients/:id/edit"
-            element={<ClientsIdEdit clientData={clientData} />}
-          ></Route>
+        <BrowserRouter>
+          <Navigation />
+          <Routes>
+            <Route element={<div>Main Page</div>} path="" />
+            <Route exact path="/clients" element={<Clients />}></Route>
+            <Route exact path="/clients/add" element={<ClientsAdd />}></Route>
+            <Route exact path="/clients/:id" element={<ClientsId />}></Route>
+            <Route
+              exact
+              path="/clients/:id/edit"
+              element={<ClientsIdEdit />}
+            ></Route>
 
-          <Route exact path="/orders" element={<Orders />}></Route>
-          <Route exact path="/orders/:id" element={<OrdersId />}></Route>
-          <Route exact path="/orders/add" element={<OrdersAdd clientData={clientData} />}></Route>
-          <Route exact path="/invoices" element={<Invoice />}></Route>
-        </Routes>
+            <Route exact path="/orders" element={<Orders />}></Route>
+            <Route exact path="/orders/:id" element={<OrdersId />}></Route>
+            <Route exact path="/orders/add" element={<OrdersAdd />}></Route>
+            <Route exact path="/invoices" element={<Invoice />}></Route>
+          </Routes>
 
-        {/* <Route path="/business"/>
+          {/* <Route path="/business"/>
           <Route path="/business">
             <Route index element={<div>Business</div>} />
             <Route element={<div>Business/clients</div>} path="clients" />
@@ -79,7 +62,7 @@ function App() {
             </Route>
           </Route>
           <Route element={<div>404</div>} path="*" /> */}
-      </BrowserRouter>
+        </BrowserRouter>
       </QueryClientProvider>
     </div>
   );

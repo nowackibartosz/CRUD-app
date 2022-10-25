@@ -1,7 +1,7 @@
 import React from "react";
 
 import { useFormik } from "formik";
-import * as yup from "yup";
+import { yupSchema } from "../Validation/Val";
 import { addClient } from "../Serwis/orderService";
 // # Zadanie 2
 
@@ -23,23 +23,10 @@ import { addClient } from "../Serwis/orderService";
 
 
 
-const yupSchema = yup.object({
-  name: yup.string().min(3,"name min 3").required("required"),  ///przerobić error
-  surname: yup.string().min(3).required("surname min 3"),
-  street: yup.string().min(5).required("street min 5"),
-  code: yup.string().matches(/^[0-9]{2}-[0-9]{3}/, "Nie pasuje regex"),
-  city: yup.string().min(3).required("city min 3"),
-  region: yup.string().min(3,"min 3 letters"), 
-  imageURL: yup.string().min(5).required("image"),
-  // number: yup.string().includes("+11").required("DO +11"),
-});
 
 
 
-const ClientsAdd = ({ clientData }) => {
-
-
-
+const ClientsAdd = () => {
 
 
   const formik = useFormik({
@@ -54,10 +41,10 @@ const ClientsAdd = ({ clientData }) => {
       number: "",
     },
     onSubmit: (values) => {
-      addClient(values);   /////zmienic na setstate
-      console.log(clientData);
+      addClient(values);  
+     
     },
-   // validationSchema: yupSchema, //wpięcie schematu walidacji
+   validationSchema: yupSchema, //wpięcie schematu walidacji
   });
 
   return (

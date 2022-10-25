@@ -2,26 +2,16 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useFormik } from "formik";
-import * as yup from "yup";
+import { yupSchema } from "../Validation/Val";
 import { useState, useEffect } from "react";
 
 import { addClient, getEditSingleClient } from "../Serwis/orderService";
 
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-const yupSchema = yup.object({
-  name: yup.string().min(3, "name min 3").required("required"), ///przerobić error
-  surname: yup.string().min(3).required("surname min 3"),
-  street: yup.string().min(5).required("street min 5"),
-  code: yup.string().matches(/^[0-9]{2}-[0-9]{3}/, "Nie pasuje regex"),
-  city: yup.string().min(3).required("city min 3"),
-  region: yup.string().min(3, "min 3 letters"),
-  imageURL: yup.string().min(5).required("image"),
-  // number: yup.string().includes("+11").required("DO +11"),
-});
 
 ///validacje mozna trzymac w oddzielnym
 
-const ClientsIdEdit = ({ clientData }) => {
+const ClientsIdEdit = () => {
   const { id } = useParams();
 
   const [data, setData] = useState({});
@@ -34,7 +24,7 @@ const ClientsIdEdit = ({ clientData }) => {
 
   const queryClient = useQueryClient();
 
-  const mutation = useMutation(addClient, {
+  const mutation = useMutation(getEditSingleClient, {
     onSuccess: () => {
       // rewalidacja i pobranie ponownie zapytania pod kluczem orders
       queryClient.invalidateQueries(["clients"]);
@@ -43,11 +33,6 @@ const ClientsIdEdit = ({ clientData }) => {
       console.log("Cos poszlo nie tak");
     },
   });
-
-  const handleAdd = () => {
-    //wykorzystanie mutacji
-    mutation.mutate({ formik });
-  };
 
   const formik = useFormik({
     initialValues: {
@@ -62,11 +47,8 @@ const ClientsIdEdit = ({ clientData }) => {
     enableReinitialize: true,
 
     onSubmit: (values) => {
-      setData(values);
-
-      // clientData[id].push(values);
-      // console.log(clientData)
-      ///??????????????????????////
+      mutation.mutate({ values });
+      console.log("ok");
     },
     validationSchema: yupSchema, //wpięcie schematu walidacji
   });
@@ -164,9 +146,7 @@ const ClientsIdEdit = ({ clientData }) => {
           />
         </div>
 
-        <button type="submit" onClick={handleAdd}>
-          SAVE
-        </button>
+        <button type="submit">SAVE</button>
       </form>
 
       {formik.touched.name && formik.errors.name ? (
