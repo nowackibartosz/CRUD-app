@@ -1,17 +1,13 @@
-
 import "./Clients.css";
 import { Link } from "react-router-dom";
-import {useQuery} from "@tanstack/react-query"
-import { getAllClients } from "../../Serwis/orderService";
-
-
+import { useQuery } from "@tanstack/react-query";
+import { getAllClients } from "../../Serwis/clientService";
 
 const Clients = () => {
-  
-  const {data,isLoading}=useQuery(["clients"],getAllClients)
+  const { data, isLoading } = useQuery(["clients"], getAllClients);
 
-  if(isLoading){
-    return <p>Loading...</p>
+  if (isLoading) {
+    return <p>Loading...</p>;
   }
 
   return (
@@ -21,7 +17,6 @@ const Clients = () => {
       <table className="hehe">
         <thead>
           <tr>
-          
             <th>name</th>
             <th>surname</th>
             <th>city</th>
@@ -30,11 +25,13 @@ const Clients = () => {
           </tr>
         </thead>
         <tbody>
-{/*sprobowac za pomoca nie tabeli - GRIDEM :) */}
-          
+          {/*sprobowac za pomoca nie tabeli - GRIDEM :) */}
+
           {data.map((el) => (
             <tr key={el.id}>
-              <Link to={`/clients/${el.id}`}><th>{el.name}</th></Link>
+              <Link to={`/clients/${el.id}`}>
+                <th>{el.name}</th>
+              </Link>
               <th>{el.surname}</th>
               <th>{el.city}</th>
               <th>{el.number}</th>

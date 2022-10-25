@@ -2,7 +2,7 @@ import React from "react";
 
 import { useFormik } from "formik";
 import { yupSchema } from "../Validation/Val";
-import { addClient } from "../Serwis/orderService";
+import { addClient } from "../Serwis/clientService";
 // # Zadanie 2
 
 // Podstrona na dodawanie klientów implementacja. <br />
@@ -21,14 +21,7 @@ import { addClient } from "../Serwis/orderService";
 // - [ ] po kliknięciu na kartę klienta przenieś użytkownika na nową podstronę, która wyświetla jego wszystkie dane - detale klienta, dodaj tam przycisk umożliwiający usuwanie klienta, przygotuj statyczne UI,
 // - [ ] w detalach klienta dodaj przycisk edit, który przeniesie użykownika na formularz do edycji klienta, podstrona powinna zawierać przyciski cancel (przenosi na poprzednią stronę) i update (aktualizuje dane), na ten moment formularz statyczny (nie robi nic)
 
-
-
-
-
-
 const ClientsAdd = () => {
-
-
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -41,10 +34,9 @@ const ClientsAdd = () => {
       number: "",
     },
     onSubmit: (values) => {
-      addClient(values);  
-     
+      addClient(values);
     },
-   validationSchema: yupSchema, //wpięcie schematu walidacji
+    validationSchema: yupSchema, //wpięcie schematu walidacji
   });
 
   return (

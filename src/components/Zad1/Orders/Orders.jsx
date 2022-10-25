@@ -3,8 +3,6 @@ import { useQuery } from "@tanstack/react-query";
 import "./Orders.css";
 import { getAllOrders } from "../../Serwis/orderService";
 
-
-
 const Orders = () => {
   const { data, isLoading, error } = useQuery(["orders"], getAllOrders);
 
