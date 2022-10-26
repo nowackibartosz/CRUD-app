@@ -1,7 +1,7 @@
 {
   "clients": [
     {
-      "name": "Bartek",
+      "name": "Bart",
       "surname": "Nowacki",
       "street": "langiewicza",
       "code": "45-988",
@@ -12,7 +12,7 @@
       "id": 1
     },
     {
-      "name": "Tomasz",
+      "name": "Niemasz",
       "surname": "Niemasz",
       "street": "Wieluńska",
       "code": "66-988",

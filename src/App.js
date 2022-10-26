@@ -12,10 +12,15 @@ import Invoice from "./components/Zad1/Invoice";
 import "./App.css";
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { QueryClient, QueryClientProvider, QueryCache } from "@tanstack/react-query";
 
 //Tworzymy klienta
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  queryCache: new QueryCache(),
+  defaultOptions: {
+    staleTime: Infinity,
+  }
+});
 
 // # Zadanie 1
 

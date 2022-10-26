@@ -2,9 +2,11 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { getSingleClient } from "../Serwis/clientService";
-
+import { getSingleOrder } from "../Serwis/orderService";
+import { useQuery } from "@tanstack/react-query";
 const OrdersId = () => {
   const { id } = useParams();
+  console.log(id);
 
   const [data, setData] = useState({});
 
@@ -13,6 +15,10 @@ const OrdersId = () => {
       setData(data);
     });
   }, []);
+
+  const { data: order, isLoading } = useQuery(["singleOrder", id], () =>
+    getSingleOrder(id)
+  );
 
   return (
     <div className="detailsID">
@@ -28,7 +34,7 @@ const OrdersId = () => {
       <br />
       <br />
       <div>DANE ZAMÓWIENIA</div>
-      
+      {order.tele}
     </div>
   );
 };

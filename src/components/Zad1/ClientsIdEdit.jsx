@@ -5,7 +5,7 @@ import { useFormik } from "formik";
 import { yupSchema } from "../Validation/Val";
 import { useState, useEffect } from "react";
 
-import { getSingleClient, getEditSingleClient } from "../Serwis/clientService";
+import { getSingleClient, editSingleClient } from "../Serwis/clientService";
 
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
@@ -24,7 +24,7 @@ const ClientsIdEdit = () => {
 
   const queryClient = useQueryClient();
 
-  const mutation = useMutation(getSingleClient(id), {
+  const mutation = useMutation(async (values) => editSingleClient(id, values), {
     onSuccess: () => {
       // rewalidacja i pobranie ponownie zapytania pod kluczem orders
       queryClient.invalidateQueries([`clients`]);
@@ -45,12 +45,13 @@ const ClientsIdEdit = () => {
       code: data.code,
       city: data.city,
       region: data.region,
+      imageURL: data.imageURL,
       number: data.number,
     },
     enableReinitialize: true,
 
     onSubmit: (values) => {
-      mutation.mutate(setData(values));
+      mutation.mutate(values);
       console.log("ok");
     },
     validationSchema: yupSchema, //wpięcie schematu walidacji
