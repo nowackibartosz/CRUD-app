@@ -58,40 +58,28 @@
   ],
   "orders": [
     {
-      "id": 1,
-      "body": "zamawiam drewno",
-      "description": "opis zamówienia"
+      "tele": "85567888",
+      "body": "trawa",
+      "description": "koszenie trawy",
+      "id": 1
     },
     {
-      "id": 2,
-      "body": "zamawiam zboże",
-      "description": "opis zamówienia"
+      "tele": "8888",
+      "body": "beton",
+      "description": "4kg beton",
+      "id": 2
     },
     {
-      "id": 3,
-      "body": "koszenie trawy",
-      "description": "opis zamówienia"
+      "tele": "788366088",
+      "body": "pizza",
+      "description": "na grubym",
+      "id": 3
     },
     {
-      "id": 4,
-      "body": "wylewka betonu",
-      "description": "opis zamówienia"
-    },
-    {
-      "id": 5,
-      "body": "klaskanie",
-      "description": "opis zamówienia"
-    },
-    {
-      "name": "",
-      "body": "",
-      "id": 6
-    },
-    {
-      "name": "",
-      "body": " hello",
-      "description": "co tam",
-      "id": 7
+      "tele": "788366088",
+      "body": "makaron",
+      "description": "dużo makaronu",
+      "id": 4
     }
   ]
 }

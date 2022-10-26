@@ -1,6 +1,8 @@
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import "./Orders.css";
+
+import { Link } from "react-router-dom";
 import { getAllOrders } from "../../Serwis/orderService";
 // import { getAllClients } from "../../Serwis/clientService";
 const Orders = () => {
@@ -19,12 +21,16 @@ const Orders = () => {
 
             <th>order</th>
             <th>description</th>
+            <th>telefon zamawiającego</th>
           </tr>
         </thead>
         <tbody>
           {data.map((el) => (
             <tr key={el.id}>
               <th>{el.id}</th>
+              <Link to={`/orders/${el.id}`}>
+                <th>{el.tele}</th>
+              </Link>
 
               <th>{el.body}</th>
               <th>{el.description}</th>

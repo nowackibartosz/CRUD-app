@@ -8,7 +8,7 @@ import { getAllClients } from "../Serwis/clientService";
 const OrdersAdd = () => {
   const formik = useFormik({
     initialValues: {
-      name: "",
+      tele: "",
       body: "",
       description: "",
     },
@@ -31,8 +31,8 @@ const OrdersAdd = () => {
       <div className="addOrders">
         <form onSubmit={formik.handleSubmit}>
           <select
-            name="name"
-            value={formik.values.name}
+            name="tele"
+            value={formik.values.tele}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
           >
@@ -68,8 +68,8 @@ const OrdersAdd = () => {
           <button type="submit">ORDER</button>
         </form>
 
-        {formik.touched.name && formik.errors.name ? (
-          <p style={{ color: "red" }}>{formik.errors.name}</p>
+        {formik.touched.tele && formik.errors.tele ? (
+          <p style={{ color: "red" }}>{formik.errors.tele}</p>
         ) : null}
 
         {/* <form action="/action_page.php">
