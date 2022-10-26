@@ -59,35 +59,39 @@
   "orders": [
     {
       "id": 1,
-      "body": "zamawiam drewno"
+      "body": "zamawiam drewno",
+      "description": "opis zamówienia"
     },
     {
       "id": 2,
-      "body": "zamawiam zboże"
+      "body": "zamawiam zboże",
+      "description": "opis zamówienia"
     },
     {
       "id": 3,
-      "body": "koszenie trawy"
+      "body": "koszenie trawy",
+      "description": "opis zamówienia"
     },
     {
       "id": 4,
-      "body": "wylewka betonu"
+      "body": "wylewka betonu",
+      "description": "opis zamówienia"
     },
     {
       "id": 5,
-      "body": "klaskanie"
+      "body": "klaskanie",
+      "description": "opis zamówienia"
     },
     {
-      "body": " hello",
+      "name": "",
+      "body": "",
       "id": 6
     },
     {
-      "body": "siemka",
+      "name": "",
+      "body": " hello",
+      "description": "co tam",
       "id": 7
-    },
-    {
-      "body": "siemka",
-      "id": 8
     }
   ]
 }

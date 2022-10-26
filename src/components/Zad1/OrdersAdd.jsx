@@ -1,14 +1,16 @@
 import React from "react";
-
+import { useQuery } from "@tanstack/react-query";
 import { useFormik } from "formik";
 // import { yupSchema } from "../Validation/Val";
 import { addOrder } from "../Serwis/orderService";
-
+import { getAllClients } from "../Serwis/clientService";
 //???????????????????////
 const OrdersAdd = () => {
   const formik = useFormik({
     initialValues: {
+      name: "",
       body: "",
+      description: "",
     },
     onSubmit: (values) => {
       addOrder(values);
@@ -16,31 +18,61 @@ const OrdersAdd = () => {
     // validationSchema: yupSchema, //wpięcie schematu walidacji
   });
 
+  const { data, isLoading } = useQuery(["clients"], getAllClients);
+
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
+
   return (
-    <div className="addOrders">
+    <div>
       <div>Add your new order</div>
       <br />
-      <form onSubmit={formik.handleSubmit}>
-        <div>
-          <label htmlFor="body">whats order: </label>
-          <input
-            type="text"
-            id="body"
-            name="body"
+      <div className="addOrders">
+        <form onSubmit={formik.handleSubmit}>
+          <select
+            name="name"
+            value={formik.values.name}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            value={formik.values.body}
-          />
-        </div>
-        <br />
-        <button type="submit">ORDER</button>
-      </form>
+          >
+            {data.map((el) => (
+              <option value={el.number}>
+                {" "}
+                {el.name} {el.surname}
+              </option>
+            ))}
+          </select>
+          <div>
+            <label htmlFor="body">body</label>
+            <input
+              type="text"
+              id="body"
+              name="body"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.body}
+            />
+          </div>
+          <div>
+            <label htmlFor="description">description</label>
+            <input
+              type="text"
+              id="description"
+              name="description"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.description}
+            />
+          </div>
+          <button type="submit">ORDER</button>
+        </form>
 
-      {formik.touched.name && formik.errors.name ? (
-        <p style={{ color: "red" }}>{formik.errors.name}</p>
-      ) : null}
+        {formik.touched.name && formik.errors.name ? (
+          <p style={{ color: "red" }}>{formik.errors.name}</p>
+        ) : null}
 
-      {/* <form action="/action_page.php">
+        {/* <form action="/action_page.php">
         <select id="client">
           {.map((el) => (
             <option value={el.numbe}>
@@ -50,6 +82,7 @@ const OrdersAdd = () => {
           ))}
         </select>
       </form> */}
+      </div>
     </div>
   );
 };
