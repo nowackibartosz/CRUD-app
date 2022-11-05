@@ -80,27 +80,29 @@
       "body": "makaron",
       "description": "dużo makaronu",
       "id": 4
+    },
+    {
+      "tele": "",
+      "body": "",
+      "description": "",
+      "id": 5
     }
   ],
-
   "faktury": [
-      {
-        "id": 1,
-        "invoiceName": "fakturka1",
-        "invoiceCost": "150zł"
-      },
-      {
-        "id": 2,
-        "invoiceName": "fakturka2",
-        "invoiceCost": "1150zł"
-      },
-      {
-        "id": 3,
-        "invoiceName": "fakturka1",
-        "invoiceCost": "610zł"
-      }
-    ]
-
-
-
+    {
+      "id": 1,
+      "invoiceName": "fakturka1",
+      "invoiceCost": "150zł"
+    },
+    {
+      "id": 2,
+      "invoiceName": "fakturka2",
+      "invoiceCost": "1150zł"
+    },
+    {
+      "id": 3,
+      "invoiceName": "fakturka1",
+      "invoiceCost": "610zł"
+    }
+  ]
 }

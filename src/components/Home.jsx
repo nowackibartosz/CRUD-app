@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useUserContext } from "./UserContext/UserContext";
 import Avatar from "@mui/material/Avatar";
-import Stack from "@mui/material/Stack";
+
 import { Container } from "@mui/material";
 
 const Home = () => {
