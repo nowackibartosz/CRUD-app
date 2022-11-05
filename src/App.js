@@ -13,6 +13,9 @@ import "./App.css";
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { QueryClient, QueryClientProvider, QueryCache } from "@tanstack/react-query";
+import FakeLoginComponent from "./components/FakeLoginComponent/FakeLoginComponent";
+import FakeRegisterComponent from "./components/FakeRegisterComponent/FakeRegisterComponent";
+import AccountMenu from "./components/menu/Menu";
 
 //Tworzymy klienta
 const queryClient = new QueryClient({
@@ -37,6 +40,9 @@ const queryClient = new QueryClient({
 function App() {
   return (
     <div className="App">
+      <AccountMenu />
+      <FakeRegisterComponent />
+      <FakeLoginComponent />
       <QueryClientProvider client={queryClient}>
         <BrowserRouter>
           <Navigation />
