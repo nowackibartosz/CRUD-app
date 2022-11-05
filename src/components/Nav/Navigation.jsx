@@ -1,7 +1,6 @@
 import React from "react";
 import "./Navigation.css";
 import { Link } from "react-router-dom";
-import ProtectedWrapper from "../ProtectedWrapper/ProtectedWrapper";
 
 const Navigation = () => {
   return (
