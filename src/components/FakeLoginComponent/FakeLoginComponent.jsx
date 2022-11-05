@@ -26,7 +26,7 @@ const FakeLoginComponent = () => {
   });
   console.log(isLogged);
   return (
-    <div className="clientsAdd">
+    <div className="loginComponent">
       <div>Fake Login Component</div>
       <form onSubmit={formik.handleSubmit}>
         <div>

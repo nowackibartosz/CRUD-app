@@ -20,6 +20,7 @@ import {
 import FakeLoginComponent from "./components/FakeLoginComponent/FakeLoginComponent";
 import FakeRegisterComponent from "./components/FakeRegisterComponent/FakeRegisterComponent";
 import AccountMenu from "./components/menu/Menu";
+import ProtectedWrapper from "./components/ProtectedWrapper/ProtectedWrapper";
 
 //Tworzymy klienta
 const queryClient = new QueryClient({
@@ -36,8 +37,10 @@ function App() {
         <AccountMenu />
         <FakeRegisterComponent />
         <FakeLoginComponent />
+
         <BrowserRouter>
           <Navigation />
+
           <Routes>
             <Route element={<div>Main Page</div>} path="" />
             <Route exact path="/clients" element={<Clients />}></Route>
@@ -52,6 +55,7 @@ function App() {
             <Route exact path="/orders" element={<Orders />}></Route>
             <Route exact path="/orders/:id" element={<OrdersId />}></Route>
             <Route exact path="/orders/add" element={<OrdersAdd />}></Route>
+
             <Route exact path="/invoices" element={<Invoice />}></Route>
           </Routes>
 

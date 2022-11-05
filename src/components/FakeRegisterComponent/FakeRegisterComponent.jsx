@@ -35,7 +35,7 @@ const FakeRegisterComponent = () => {
   console.log(users);
 
   return (
-    <div className="clientsAdd">
+    <div className="registerComponent">
       {vis ? (
         ""
       ) : (
