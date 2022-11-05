@@ -20,7 +20,9 @@ const FakeRegisterComponent = () => {
     initialValues: {
       login: "",
       password: "",
-      avatar: "https://picsum.photos/150/150",
+      name: "",
+      surname: "",
+      avatar: "",
     },
 
     ///PMAIETAJ O CYKLU ZYCIA KOMPONENTU/////
@@ -54,6 +56,28 @@ const FakeRegisterComponent = () => {
               />
             </div>
             <div>
+              <label htmlFor="name">Name</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.name}
+              />
+            </div>
+            <div>
+              <label htmlFor="surname">Surname</label>
+              <input
+                type="text"
+                id="surname"
+                name="surname"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.surname}
+              />
+            </div>
+            <div>
               <label htmlFor="password">password</label>
               <input
                 type="password"
@@ -62,6 +86,17 @@ const FakeRegisterComponent = () => {
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={formik.values.password}
+              />
+            </div>
+            <div>
+              <label htmlFor="avatar">avatar</label>
+              <input
+                type="text"
+                id="avatar"
+                name="avatar"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.avatar}
               />
             </div>
             {/* <div>

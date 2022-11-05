@@ -1,15 +1,14 @@
 import React from "react";
 import { useUserContext } from "../UserContext/UserContext";
-
+import { Navigate } from "react-router-dom";
 const ProtectedWrapper = ({ children }) => {
   const { isLogged } = useUserContext();
 
-    return(
-    
-        <div>{children}</div>
-        // <div className="wrapik">{isLogged ? { children } : null} </div>
-    
-    )
+  if (!isLogged) {
+    return <Navigate to="/" replace />;
+  }
+  return children;
+  // <div className="wrapik">{isLogged ? { children } : null} </div>
 };
 
 export default ProtectedWrapper;

@@ -1,3 +1,4 @@
+import Home from "./components/Home";
 import Clients from "./components/Zad1/Clients/Clients";
 import ClientsAdd from "./components/Zad1/ClientsAdd";
 import Navigation from "./components/Nav/Navigation";
@@ -21,8 +22,7 @@ import FakeLoginComponent from "./components/FakeLoginComponent/FakeLoginCompone
 import FakeRegisterComponent from "./components/FakeRegisterComponent/FakeRegisterComponent";
 import AccountMenu from "./components/menu/Menu";
 import ProtectedWrapper from "./components/ProtectedWrapper/ProtectedWrapper";
-
-
+import { useUserContext } from "./components/UserContext/UserContext";
 
 //Tworzymy klienta
 const queryClient = new QueryClient({
@@ -33,6 +33,8 @@ const queryClient = new QueryClient({
 });
 
 function App() {
+ 
+
   return (
     <div className="App">
       <QueryClientProvider client={queryClient}>
@@ -41,16 +43,36 @@ function App() {
         <FakeLoginComponent />
         <BrowserRouter>
           <Navigation />
-           <Routes>
-            <Route element={<div>Main Page</div>} path="" />
+          <Routes>
+            <Route
+              element={
+                <div>
+                  <Home />
+                </div>
+              }
+              path=""
+            />
             <Route exact path="/clients" element={<Clients />}></Route>
             <Route exact path="/clients/add" element={<ClientsAdd />}></Route>
             <Route exact path="/clients/:id" element={<ClientsId />}></Route>
-            <Route exact path="/clients/:id/edit" element={<ClientsIdEdit />}></Route>
+            <Route
+              exact
+              path="/clients/:id/edit"
+              element={<ClientsIdEdit />}
+            ></Route>
             <Route exact path="/orders" element={<Orders />}></Route>
             <Route exact path="/orders/:id" element={<OrdersId />}></Route>
             <Route exact path="/orders/add" element={<OrdersAdd />}></Route>
-            <Route exact path="/invoices" element={<Invoice />}></Route>
+
+            <Route
+              exact
+              path="/invoices"
+              element={
+                <ProtectedWrapper>
+                  <Invoice />
+                </ProtectedWrapper>
+              }
+            ></Route>
           </Routes>
         </BrowserRouter>
       </QueryClientProvider>
