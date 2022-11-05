@@ -22,7 +22,7 @@ import FakeLoginComponent from "./components/FakeLoginComponent/FakeLoginCompone
 import FakeRegisterComponent from "./components/FakeRegisterComponent/FakeRegisterComponent";
 import AccountMenu from "./components/menu/Menu";
 import ProtectedWrapper from "./components/ProtectedWrapper/ProtectedWrapper";
-import { useUserContext } from "./components/UserContext/UserContext";
+
 
 //Tworzymy klienta
 const queryClient = new QueryClient({

@@ -18,11 +18,11 @@ const FakeRegisterComponent = () => {
 
   const formik = useFormik({
     initialValues: {
-      login: "",
-      password: "",
-      name: "",
-      surname: "",
-      avatar: "",
+      login: "poklik",
+      password: "123123",
+      name: "Bartek",
+      surname: "Nowak",
+      avatar: "https://picsum.photos/150/150",
     },
 
     ///PMAIETAJ O CYKLU ZYCIA KOMPONENTU/////
