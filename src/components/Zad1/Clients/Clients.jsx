@@ -73,7 +73,8 @@ const Clients = () => {
                    
                     <div className="hihi">
                       <Button onClick={() => {
-                        handleDelete(data.id)
+                        handleDelete(data.id);
+                        QueryClient.invalidateQueries({ queryKey: ["clients"] })
                       }}>YES</Button>
                       <Button onClick={handleClose}>NO</Button>
                     </div>
