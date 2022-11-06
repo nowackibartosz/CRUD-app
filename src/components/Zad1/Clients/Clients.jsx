@@ -39,7 +39,7 @@ const Clients = () => {
                 <button
                   onClick={() => {
                     handleDelete(el.id);
-                    QueryClient.invalidateQueries({ queryKey: ["clients"] });
+                   
                   }}
                 >
                   DELETE
