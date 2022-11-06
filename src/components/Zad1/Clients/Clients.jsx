@@ -61,7 +61,14 @@ const Clients = () => {
               <th>{el.number}</th>
               <th>{el.imageURL}</th>
               <th>
-                <Button onClick={handleOpen}>DELETE</Button>
+                <Button
+                  onClick={() => {
+                    handleOpen();
+                    console.log(el.id);
+                  }}
+                >
+                  DELETE
+                </Button>
                 <Modal
                   open={open}
                   onClose={handleClose}
@@ -70,12 +77,17 @@ const Clients = () => {
                 >
                   <Box sx={{ ...style, width: 400 }}>
                     <p className="parent-modal-description">Are you sure?</p>
-                   
+
                     <div className="hihi">
-                      <Button onClick={() => {
-                        handleDelete(data.id);
-                        QueryClient.invalidateQueries({ queryKey: ["clients"] })
-                      }}>YES</Button>
+                      <Button
+                        onClick={() => {
+                          handleDelete(el.id);
+                          console.log(el.id);
+                          // QueryClient.invalidateQueries({ queryKey: ["clients"] })
+                        }}
+                      >
+                        YES
+                      </Button>
                       <Button onClick={handleClose}>NO</Button>
                     </div>
                   </Box>
