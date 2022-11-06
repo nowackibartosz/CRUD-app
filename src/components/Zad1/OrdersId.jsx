@@ -34,7 +34,7 @@ const OrdersId = () => {
       <br />
       <br />
       <div>DANE ZAMÓWIENIA</div>
-      {order.tele}
+      {data.tele}
     </div>
   );
 };
