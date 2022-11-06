@@ -58,12 +58,6 @@
   ],
   "orders": [
     {
-      "tele": "85567888",
-      "body": "trawa",
-      "description": "koszenie trawy",
-      "id": 1
-    },
-    {
       "tele": "8888",
       "body": "beton",
       "description": "4kg beton",

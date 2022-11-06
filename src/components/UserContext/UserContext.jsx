@@ -1,9 +1,6 @@
 import { createContext, useContext, useState } from "react";
 
-/*
-- [ ] Stwórz FakeRegisterComponent, który będzie zawierał pola login, hasło i powtórz hasło. Konto zapisz do UserContextu.
-- [ ] Stwórz FakeLoginComponent, który będzie zawierał formularz z walidacją oraz UserContext. UserContext ma przechowywać dane o tym czy użytkownik jest zalogowany (na ten moment zrób tam metodę logIn i logOut), w metodzie logIn sprawdzaj wpisane w formularzu dane i zmień stan na zalogowany jeśli wprowadzone dane są prawidłowe, czyli czy taki uzytkownik juz sie zarejestrowal. Login komponent powinien pokazywać się na stronie głównej.
-*/
+
 const UserContext = createContext(undefined);
 
 export const UserProvider = ({ children }) => {

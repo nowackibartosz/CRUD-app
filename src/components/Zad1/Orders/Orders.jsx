@@ -1,5 +1,5 @@
 
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import "./Orders.css";
 
 import { Link } from "react-router-dom";
@@ -8,7 +8,7 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import Button from "@mui/material/Button";
-
+import { useState } from "react";
 const style = {
   position: "absolute",
   top: "50%",
@@ -29,7 +29,9 @@ const style = {
 
 const Orders = () => {
   const { data, isLoading, error } = useQuery(["orders"], getAllOrders);
-  const [open, setOpen] = React.useState(false);
+  const queryClient = useQueryClient()
+  const [open, setOpen] = useState(false);
+  const [elModal, setElModal] = useState("");
   const handleOpen = () => {
     setOpen(true);
   };
@@ -63,29 +65,42 @@ const Orders = () => {
               <th>{el.body}</th>
               <th>{el.description}</th>
               <th>
-                <Button onClick={handleOpen}>DELETE</Button>
-                <Modal
-                  open={open}
-                  onClose={handleClose}
-                  aria-labelledby="parent-modal-title"
-                  aria-describedby="parent-modal-description"
-                >
-                  <Box sx={{ ...style, width: 400 }}>
-                    <p className="parent-modal-description">Are you sure?</p>
-                   
-                    <div className="hihi">
-                      <Button onClick={() => {
-                        handleDelete(el.id)
-                      }}>YES</Button>
-                      <Button onClick={handleClose}>NO</Button>
-                    </div>
-                  </Box>
-                </Modal>
+                <Button onClick={() => {
+                    handleOpen();
+                    setElModal(el.id);
+                    
+                  }}>DELETE</Button>
+                
               </th>
             </tr>
           ))}
         </tbody>
       </table>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="parent-modal-title"
+        aria-describedby="parent-modal-description"
+      >
+        <Box sx={{ ...style, width: 400 }}>
+          <p className="parent-modal-description">Are you sure?</p>
+
+          <div className="hihi">
+            <Button
+              onClick={() => {
+                handleDelete(elModal);
+               
+                queryClient.invalidateQueries({ queryKey: ['orders'] })
+                handleClose();
+                
+              }}
+            >
+              YES
+            </Button>
+            <Button onClick={handleClose}>NO</Button>
+          </div>
+        </Box>
+      </Modal>
     </div>
   );
 };

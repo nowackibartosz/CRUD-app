@@ -71,7 +71,7 @@ const Clients = () => {
                   onClick={() => {
                     handleOpen();
                     setElModal(el.id);
-                    console.log(el.id);
+                    
                   }}
                 >
                   DELETE
@@ -94,7 +94,7 @@ const Clients = () => {
             <Button
               onClick={() => {
                 handleDelete(elModal);
-                console.log(elModal);
+               
                 queryClient.invalidateQueries({ queryKey: ['clients'] })
                 handleClose();
                 
