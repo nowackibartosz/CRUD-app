@@ -3,7 +3,7 @@ import Clients from "./components/Zad1/Clients/Clients";
 import ClientsAdd from "./components/Zad1/ClientsAdd";
 import Navigation from "./components/Nav/Navigation";
 import ClientsId from "./components/Zad1/ClientsId";
-
+import ThemeButton from "./components/ThemeContext/ThemeButton";
 import ClientsIdEdit from "./components/Zad1/ClientsIdEdit";
 import Orders from "./components/Zad1/Orders/Orders";
 import OrdersAdd from "./components/Zad1/OrdersAdd";
@@ -24,7 +24,7 @@ import AccountMenu from "./components/menu/Menu";
 import ProtectedWrapper from "./components/ProtectedWrapper/ProtectedWrapper";
 import { Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";
-
+import { useThemeContext } from "./components/ThemeContext/ThemeContext";
 //Tworzymy klienta
 
 const queryClient = new QueryClient({
@@ -35,11 +35,14 @@ const queryClient = new QueryClient({
 });
 
 function App() {
+  const { isDarkTheme } = useThemeContext();
+
   return (
-    <div className="App">
+    <div className={isDarkTheme ? "AppDark" : "App"}>
       <ErrorBoundary fallback={<div>ErrorBoundary</div>}>
         <Suspense fallback={<div>Lazy suspense</div>}>
           <QueryClientProvider client={queryClient}>
+            <ThemeButton/>
             <AccountMenu />
             <FakeRegisterComponent />
             <FakeLoginComponent />

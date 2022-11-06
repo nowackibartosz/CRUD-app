@@ -4,17 +4,17 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { UserProvider } from "./components/UserContext/UserContext";
-import { ThemeProvider } from "./components/ThemeContext/ThemeSelectorContext";
+import { ThemeProvider } from "./components/ThemeContext/ThemeContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-
 document.documentElement.style.setProperty("--light", "#5cd2b6");
-
 root.render(
   <React.StrictMode>
-    <UserProvider>
-      <App />
-    </UserProvider>
+    <ThemeProvider>
+      <UserProvider>
+        <App />
+      </UserProvider>
+    </ThemeProvider>
   </React.StrictMode>
 );
 

@@ -1,6 +1,6 @@
 import React from "react";
 import "./ThemeButton.css";
-import { useThemeContext } from "./ThemeSelectorContext";
+import { useThemeContext } from "./ThemeContext";
 
 const ThemeButton = () => {
   const { isDarkTheme, setIsDarkTheme } = useThemeContext();

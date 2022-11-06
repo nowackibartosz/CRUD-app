@@ -26,7 +26,6 @@ const Clients = () => {
           </tr>
         </thead>
         <tbody>
-
           {data.map((el) => (
             <tr key={el.id}>
               <Link to={`/clients/${el.id}`}>
@@ -40,7 +39,7 @@ const Clients = () => {
                 <button
                   onClick={() => {
                     handleDelete(el.id);
-                    QueryClient.invalidateQueries({ queryKey: ['clients'] })
+                    QueryClient.invalidateQueries({ queryKey: ["clients"] });
                   }}
                 >
                   DELETE
