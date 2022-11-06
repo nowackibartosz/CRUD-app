@@ -45,14 +45,14 @@
       "id": 4
     },
     {
-      "name": "Jan",
-      "surname": "Błachowicz",
-      "street": "Leśna",
-      "code": "51-888",
-      "city": "Kraków",
-      "region": "małopolskie",
-      "imageURL": "mma",
-      "number": "33488455",
+      "name": "AJam",
+      "surname": "Pol",
+      "street": "Lenokna",
+      "code": "51-800",
+      "city": "Dzwonnice",
+      "region": "wlkp",
+      "imageURL": "wodawoda",
+      "number": "123456",
       "id": 5
     }
   ],
@@ -82,9 +82,9 @@
       "id": 4
     },
     {
-      "tele": "",
-      "body": "",
-      "description": "",
+      "tele": "111222333",
+      "body": "tona pisaku",
+      "description": "iarnisty",
       "id": 5
     }
   ],
