@@ -1,6 +1,6 @@
 import "./Clients.css";
 import { Link } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, QueryClient } from "@tanstack/react-query";
 import { getAllClients, handleDelete } from "../../Serwis/clientService";
 import React, { useState } from "react";
 
@@ -26,7 +26,6 @@ const Clients = () => {
           </tr>
         </thead>
         <tbody>
-          {/*sprobowac za pomoca nie tabeli - GRIDEM :) */}
 
           {data.map((el) => (
             <tr key={el.id}>
@@ -41,7 +40,7 @@ const Clients = () => {
                 <button
                   onClick={() => {
                     handleDelete(el.id);
-                    
+                    QueryClient.invalidateQueries({ queryKey: ['clients'] })
                   }}
                 >
                   DELETE

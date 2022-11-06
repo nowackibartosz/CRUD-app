@@ -4,9 +4,12 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { UserProvider } from "./components/UserContext/UserContext";
-
+import { ThemeProvider } from "./components/ThemeContext/ThemeSelectorContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
+
+document.documentElement.style.setProperty("--light", "#5cd2b6");
+
 root.render(
   <React.StrictMode>
     <UserProvider>
