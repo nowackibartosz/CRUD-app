@@ -41,3 +41,9 @@ export const orderById = async (values) => {
   const data = await response.json();
   return data;
 };
+
+export const handleDelete = (id) => {
+  fetch(`http://localhost:3000/orders/${id}`, {
+    method: "DELETE",
+  });
+};
