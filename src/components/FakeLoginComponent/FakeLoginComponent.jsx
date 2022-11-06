@@ -3,7 +3,7 @@ import { useUserContext } from "../UserContext/UserContext";
 import { useFormik } from "formik";
 
 const FakeLoginComponent = () => {
-  const { isLogged, users, setUsers, logIn } = useUserContext();
+  const { isLogged, users, logIn } = useUserContext();
   const formik = useFormik({
     initialValues: {
       login: "",
@@ -24,7 +24,7 @@ const FakeLoginComponent = () => {
 
     // validationSchema: yupSchema,
   });
-  console.log(isLogged);
+
   return (
     <div className="loginComponent">
       <div>Fake Login Component</div>

@@ -12,7 +12,7 @@ import { useFormik } from "formik";
 // });
 
 const FakeRegisterComponent = () => {
-  const { isLogged, users, setUsers, logIn } = useUserContext();
+  const {setUsers} = useUserContext();
 
   const [vis, setVis] = useState(false);
 
@@ -34,7 +34,7 @@ const FakeRegisterComponent = () => {
     // validationSchema: yupSchema,
   });
 
-  console.log(users);
+
 
   return (
     <div className="registerComponent">

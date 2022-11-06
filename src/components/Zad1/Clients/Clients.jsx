@@ -2,7 +2,7 @@ import "./Clients.css";
 import { Link } from "react-router-dom";
 import { useQuery, QueryClient } from "@tanstack/react-query";
 import { getAllClients, handleDelete } from "../../Serwis/clientService";
-import React, { useState } from "react";
+
 
 const Clients = () => {
   const { data, isLoading } = useQuery(["clients"], getAllClients);
