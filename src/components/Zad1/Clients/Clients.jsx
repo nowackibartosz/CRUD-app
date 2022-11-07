@@ -95,6 +95,7 @@ const Clients = () => {
               onClick={() => {
                 handleDelete(elModal);
                
+                
                 queryClient.invalidateQueries({ queryKey: ['clients'] })
                 handleClose();
                 

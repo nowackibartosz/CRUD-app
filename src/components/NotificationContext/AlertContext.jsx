@@ -1,10 +1,14 @@
-import {createContext,useState,useContext} from "react"
-const NotificationContext = createContext(undefined)
+import { createContext, useState, useContext } from "react"
 
-export const NotificationProvider=({children})=>{
+
+
+
+export const AlertContext = createContext({ undefined, isOpen: false })
+
+export const AlertProvider=({children})=>{
     // const [isDarkTheme,setIsDarkTheme]=useState(false)
 
-    return <NotificationContext.Provider>
+    return <AlertContext.Provider>
 
 
         <div className="notificator">
@@ -15,10 +19,10 @@ export const NotificationProvider=({children})=>{
     
     
     
-    </NotificationContext.Provider>
+    </AlertContext.Provider>
 }
-export const useNotificationContext=()=>{
-    const ctx=useContext(NotificationContext)
+export const useAlertContext=()=>{
+    const ctx=useContext(AlertContext)
 
     if(!ctx){ // poza komponentem zwróci nulla
         throw new Error("Missing themeContext, it's not wrapped in ThemeProvider")

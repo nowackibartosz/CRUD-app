@@ -26,6 +26,9 @@ import { Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import { useThemeContext } from "./components/ThemeContext/ThemeContext";
 //Tworzymy klienta
+import { AlertContext } from "./components/NotificationContext/AlertContext";
+
+
 
 const queryClient = new QueryClient({
   queryCache: new QueryCache(),
@@ -36,11 +39,13 @@ const queryClient = new QueryClient({
 
 function App() {
   const { isDarkTheme } = useThemeContext();
+  const alert = useAlert();
 
   return (
     <div className={isDarkTheme ? "AppDark" : "App"}>
       <ErrorBoundary fallback={<div>ErrorBoundary</div>}>
         <Suspense fallback={<div>Lazy suspense</div>}>
+          <AlertContext value={alert}>
           <QueryClientProvider client={queryClient}>
             <ThemeButton/>
             <AccountMenu />
@@ -88,7 +93,8 @@ function App() {
                 ></Route>
               </Routes>
             </BrowserRouter>
-          </QueryClientProvider>
+            </QueryClientProvider>
+            </AlertContext>
         </Suspense>
       </ErrorBoundary>
     </div>
