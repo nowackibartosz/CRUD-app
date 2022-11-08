@@ -38,6 +38,11 @@ const Clients = () => {
     setOpen(false);
   };
 
+  const handleDeleteEl=()=>{
+      handleDelete(elModal)
+       queryClient.invalidateQueries(['clients'])
+  }
+
   if (isLoading) {
     return <p>Loading...</p>;
   }
@@ -93,10 +98,7 @@ const Clients = () => {
           <div className="hihi">
             <Button
               onClick={() => {
-                handleDelete(elModal);
-               
-                
-                queryClient.invalidateQueries({ queryKey: ['clients'] })
+                handleDeleteEl();
                 handleClose();
                 
               }}

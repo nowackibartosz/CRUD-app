@@ -3,6 +3,8 @@ import React from "react";
 import { useFormik } from "formik";
 import { yupSchema } from "../Validation/Val";
 import { addClient } from "../Serwis/clientService";
+import {useMutation,useQueryClient} from "@tanstack/react-query"
+import { useAlertContext } from "../AlertContext/AlertContext";
 // # Zadanie 2
 
 // Podstrona na dodawanie klientów implementacja. <br />
@@ -22,6 +24,20 @@ import { addClient } from "../Serwis/clientService";
 // - [ ] w detalach klienta dodaj przycisk edit, który przeniesie użykownika na formularz do edycji klienta, podstrona powinna zawierać przyciski cancel (przenosi na poprzednią stronę) i update (aktualizuje dane), na ten moment formularz statyczny (nie robi nic)
 
 const ClientsAdd = () => {
+  const { showNotification } = useAlertContext();
+  const queryClient = useQueryClient()
+  const mutation=useMutation(async (values)=>{
+    await addClient(values)
+  },{
+    onSucces: ()=>{
+      queryClient.invalidateQueries("clients")
+      showNotification("Dodałeś klienta","success",3)
+    },
+    onError:()=>{
+
+      showNotification("Nie udało się dodać","error",5)
+    }
+  })
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -34,9 +50,9 @@ const ClientsAdd = () => {
       number: "",
     },
     onSubmit: (values) => {
-      addClient(values);
+     mutation.mutate(values);
     },
-    validationSchema: yupSchema, //wpięcie schematu walidacji
+    //validationSchema: yupSchema, //wpięcie schematu walidacji
   });
 
   return (

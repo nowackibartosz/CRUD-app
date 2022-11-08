@@ -1,3 +1,4 @@
+import React from "react"
 import Home from "./components/Home";
 import Clients from "./components/Zad1/Clients/Clients";
 import ClientsAdd from "./components/Zad1/ClientsAdd";
@@ -8,7 +9,7 @@ import ClientsIdEdit from "./components/Zad1/ClientsIdEdit";
 import Orders from "./components/Zad1/Orders/Orders";
 import OrdersAdd from "./components/Zad1/OrdersAdd";
 import OrdersId from "./components/Zad1/OrdersId";
-import Invoice from "./components/Zad1/Invoice";
+// import Invoice from "./components/Zad1/Invoice";
 
 import "./App.css";
 
@@ -25,6 +26,11 @@ import ProtectedWrapper from "./components/ProtectedWrapper/ProtectedWrapper";
 import { Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import { useThemeContext } from "./components/ThemeContext/ThemeContext";
+import { AlertProvider } from "./components/AlertContext/AlertContext";
+import { Alert } from "./components/AlertContext/AlertContext";
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+const Invoice=React.lazy(()=>import("./components/Zad1/Invoice"))
+
 //Tworzymy klienta
 
 
@@ -42,10 +48,15 @@ function App() {
 
   return (
     <div className={isDarkTheme ? "AppDark" : "App"}>
+      
       <ErrorBoundary fallback={<div>ErrorBoundary</div>}>
         <Suspense fallback={<div>Lazy suspense</div>}>
-      
+        <AlertProvider>
+          <Alert />
           <QueryClientProvider client={queryClient}>
+            {process.env.NODE_ENV === "development" && (
+          <ReactQueryDevtools position="top-right" initialIsOpen={false} />
+        )}
             <ThemeButton/>
             <AccountMenu />
               <FakeRegisterComponent />
@@ -94,7 +105,7 @@ function App() {
               </Routes>
             </BrowserRouter>
             </QueryClientProvider>
-            
+            </AlertProvider>
         </Suspense>
       </ErrorBoundary>
     </div>

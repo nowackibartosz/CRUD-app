@@ -1,9 +1,12 @@
 import React from "react";
 import { useUserContext } from "../UserContext/UserContext";
 import { useFormik } from "formik";
+import { useAlertContext } from "../AlertContext/AlertContext";
+
 
 const FakeLoginComponent = () => {
   const { isLogged, users, logIn } = useUserContext();
+  const { showNotification } = useAlertContext();
   const formik = useFormik({
     initialValues: {
       login: "",
@@ -16,6 +19,7 @@ const FakeLoginComponent = () => {
         users[0].login === formik.values.login &&
         users[0].password === formik.values.password
       ) {
+        showNotification("Zalogowałeś się", "success", 5)
         logIn();
       } else {
         console.log("błędne hasło");
