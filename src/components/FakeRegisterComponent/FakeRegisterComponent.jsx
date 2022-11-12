@@ -12,7 +12,7 @@ import { useFormik } from "formik";
 // });
 
 const FakeRegisterComponent = () => {
-  const {setUsers} = useUserContext();
+  const { users, setUsers } = useUserContext();
 
   const [vis, setVis] = useState(false);
 
@@ -28,13 +28,25 @@ const FakeRegisterComponent = () => {
     ///PMAIETAJ O CYKLU ZYCIA KOMPONENTU/////
     onSubmit: (values) => {
       setUsers((prev) => [...prev, values]);
-      setVis(!vis);
+
+      const uzytkownik = values.login;
+
+      // const filteredUzytkownik = users.filter((nami) =>
+      //   nami.login.includes(uzytkownik)
+      // );
+
+      if (users.includes(uzytkownik)) {
+        console.log("taki uzytkownik juz istnieje");
+      } else {
+        console.log("wjazd");
+      }
+      console.log(users);
+      console.log(users.includes(uzytkownik));
+      // setVis(vis);
     },
 
     // validationSchema: yupSchema,
   });
-
-
 
   return (
     <div className="registerComponent">

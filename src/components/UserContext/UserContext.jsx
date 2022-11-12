@@ -1,12 +1,11 @@
 import { createContext, useContext, useState } from "react";
 
-
 const UserContext = createContext(undefined);
 
 export const UserProvider = ({ children }) => {
   const [isLogged, setIsLogged] = useState(false);
   const [users, setUsers] = useState([]);
- 
+
   const logIn = () => {
     // znalezc usera po username, i sprawdzic jego haslo
     setIsLogged(true);
@@ -16,10 +15,10 @@ export const UserProvider = ({ children }) => {
     setIsLogged(false);
   };
 
-  const handleRegister=(values)=>{
+  const handleRegister = (values) => {
     //TODO czy istnieje jak istnieje to nie mozesz zarejestrować
     // setUsers(prev=>[...prev,values])
-  }
+  };
   return (
     <UserContext.Provider value={{ isLogged, users, setUsers, logIn, logOut }}>
       {children}
