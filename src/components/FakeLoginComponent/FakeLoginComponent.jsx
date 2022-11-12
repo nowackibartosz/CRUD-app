@@ -14,15 +14,27 @@ const FakeLoginComponent = () => {
 
     ///PMAIETAJ O CYKLU ZYCIA KOMPONENTU/////
     onSubmit: (values) => {
-      if (
-        users[0].login === formik.values.login &&
-        users[0].password === formik.values.password
-      ) {
+      const existsUser = users.find(
+        (x) => x.login === values.login && x.password === values.password
+      );
+
+      console.log(existsUser);
+      if (existsUser) {
         showNotification("Zalogowałeś się", "success", 5);
         logIn();
       } else {
-        console.log("błędne hasło");
+        showNotification("błędnę hasło", "success", 5);
       }
+
+      // if (
+      //   users[0].login === formik.values.login &&
+      //   users[0].password === formik.values.password
+      // ) {
+      //   showNotification("Zalogowałeś się", "success", 5);
+      //   logIn();
+      // } else {
+      //   console.log("błędne hasło");
+      // }
     },
 
     // validationSchema: yupSchema,

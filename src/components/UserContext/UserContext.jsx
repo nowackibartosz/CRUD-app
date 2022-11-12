@@ -8,7 +8,9 @@ export const UserProvider = ({ children }) => {
 
   const logIn = () => {
     // znalezc usera po username, i sprawdzic jego haslo
+
     setIsLogged(true);
+   
   };
 
   const logOut = () => {
