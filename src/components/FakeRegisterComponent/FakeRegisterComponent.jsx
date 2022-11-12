@@ -3,7 +3,7 @@ import { useState } from "react";
 import "./FakeRegisterComponent.css";
 import { useUserContext } from "../UserContext/UserContext";
 import { useFormik } from "formik";
-
+import { useAlertContext } from "../AlertContext/AlertContext";
 // import * as yup from "yup";
 
 // const yupSchema = yup.object({
@@ -13,7 +13,7 @@ import { useFormik } from "formik";
 
 const FakeRegisterComponent = () => {
   const { users, setUsers } = useUserContext();
-
+  const { showNotification } = useAlertContext();
   const [vis, setVis] = useState(false);
 
   const formik = useFormik({
@@ -27,22 +27,17 @@ const FakeRegisterComponent = () => {
 
     ///PMAIETAJ O CYKLU ZYCIA KOMPONENTU/////
     onSubmit: (values) => {
-      setUsers((prev) => [...prev, values]);
+      const isUserLoginFree = users.some(
+        (user) => user["login"] === values.login
+      );
 
-      const uzytkownik = values.login;
-
-      // const filteredUzytkownik = users.filter((nami) =>
-      //   nami.login.includes(uzytkownik)
-      // );
-
-      if (users.includes(uzytkownik)) {
-        console.log("taki uzytkownik juz istnieje");
+      if (isUserLoginFree) {
+        showNotification("Taki użytkownik już istnieje", "success", 5);
       } else {
-        console.log("wjazd");
+        setUsers((prev) => [...prev, values]);
+        showNotification("Jesteś pierwszy o takim loginie", "success", 5);
+        setVis(!vis);
       }
-      console.log(users);
-      console.log(users.includes(uzytkownik));
-      // setVis(vis);
     },
 
     // validationSchema: yupSchema,

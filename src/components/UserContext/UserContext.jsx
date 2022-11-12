@@ -18,6 +18,9 @@ export const UserProvider = ({ children }) => {
   const handleRegister = (values) => {
     //TODO czy istnieje jak istnieje to nie mozesz zarejestrować
     // setUsers(prev=>[...prev,values])
+
+
+
   };
   return (
     <UserContext.Provider value={{ isLogged, users, setUsers, logIn, logOut }}>
