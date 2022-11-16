@@ -9,6 +9,7 @@ import ClientsIdEdit from "./components/Zad1/ClientsIdEdit";
 import Orders from "./components/Zad1/Orders/Orders";
 import OrdersAdd from "./components/Zad1/OrdersAdd";
 import OrdersId from "./components/Zad1/OrdersId";
+import InvociesAdd from "./components/Invocies/InvociesAdd"
 // import Invoice from "./components/Zad1/Invoice";
 
 import "./App.css";
@@ -101,7 +102,8 @@ function App() {
                       <Invoice />
                     </ProtectedWrapper>
                   }
-                ></Route>
+                  ></Route>
+                  <Route exact path="/invocies/add" element={<InvociesAdd />}></Route>
               </Routes>
             </BrowserRouter>
             </QueryClientProvider>

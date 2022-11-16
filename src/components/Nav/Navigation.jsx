@@ -34,6 +34,9 @@ const Navigation = () => {
           <li>
             <Link to="/invoices">Invoices</Link>
           </li>
+          <li>
+            <Link to="/invoices/add">Invoices Add</Link>
+          </li>
         </ul>
       </nav>
     </header>

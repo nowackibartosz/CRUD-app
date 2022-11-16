@@ -8,8 +8,8 @@ const FakeLoginComponent = () => {
   const { showNotification } = useAlertContext();
   const formik = useFormik({
     initialValues: {
-      login: "",
-      password: "",
+      login: "poklik",
+      password: "123123",
     },
 
     ///PMAIETAJ O CYKLU ZYCIA KOMPONENTU/////
