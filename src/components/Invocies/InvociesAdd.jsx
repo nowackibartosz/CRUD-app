@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useFormik } from "formik";
 // import { yupSchema } from "../Validation/Val";
-import { getSingleClient } from "../Serwis/clientService";
+
 import { getAllClients } from "../Serwis/clientService";
 
 const InvoicesAdd = () => {
@@ -14,7 +14,7 @@ const InvoicesAdd = () => {
       name: "",
     },
     onSubmit: (values) => {
-      setDetailClient(!detailClient);
+      setDetailClient(true);
       setClientID(values.name);
     },
     // validationSchema: yupSchema, //wpięcie schematu walidacji
@@ -27,7 +27,7 @@ const InvoicesAdd = () => {
   }
 
   console.log(clientID);
-
+  console.log(detailClient);
   return (
     <div>
       <br />
@@ -59,17 +59,22 @@ const InvoicesAdd = () => {
 
       {detailClient ? (
         <div className="detailsID">
-          <p>{data[clientID].name}</p>
-          <p>{data[clientID].surname}</p>
-          <p>{data[clientID].street}</p>
-          <p>{data[clientID].code}</p>
-          <p>{data[clientID].city}</p>
-          <p>{data[clientID].region}</p>
-          <p>{data[clientID].imageURL}</p>
-          <p>{data[clientID].number}</p>
+          <div>
+            <p>{data[clientID - 1].name}</p>
+            <p>{data[clientID - 1].surname}</p>
+            <p>{data[clientID - 1].street}</p>
+            <p>{data[clientID - 1].code}</p>
+            <p>{data[clientID - 1].city}</p>
+            <p>{data[clientID - 1].region}</p>
+            <p>{data[clientID - 1].imageURL}</p>
+            <p>{data[clientID - 1].number}</p>
+          </div>
+          <button>
+            Pokaż zamówienia klienta {data[clientID - 1].name}{" "}
+            {data[clientID - 1].surname}
+          </button>
         </div>
       ) : null}
-      <div>hehehe</div>
     </div>
   );
 };
