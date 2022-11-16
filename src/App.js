@@ -30,6 +30,10 @@ import { useThemeContext } from "./components/ThemeContext/ThemeContext";
 import { AlertProvider } from "./components/AlertContext/AlertContext";
 import { Alert } from "./components/AlertContext/AlertContext";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import {Provider} from "react-redux";
+import {store} from "./redux"
+import {Redux} from "./components/Redux"
+
 const Invoice = React.lazy(() => import("./components/Zad1/Invoice"));
 
 //Tworzymy klienta
@@ -45,11 +49,13 @@ function App() {
   const { isDarkTheme } = useThemeContext();
 
   return (
+    <Provider store={store}>
     <div className={isDarkTheme ? "AppDark" : "App"}>
       <ErrorBoundary fallback={<div>ErrorBoundary</div>}>
         <Suspense fallback={<div>Lazy suspense</div>}>
           <AlertProvider>
             <Alert />
+            <Redux/>
             <QueryClientProvider client={queryClient}>
               {process.env.NODE_ENV === "development" && (
                 <ReactQueryDevtools
@@ -122,6 +128,7 @@ function App() {
         </Suspense>
       </ErrorBoundary>
     </div>
+    </Provider>
   );
 }
 

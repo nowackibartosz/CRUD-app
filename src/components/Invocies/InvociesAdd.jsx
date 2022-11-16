@@ -6,17 +6,21 @@ import { getAllOrders } from "../Serwis/orderService";
 import { getAllClients } from "../Serwis/clientService";
 
 const InvoicesAdd = () => {
-  const [detailClient, setDetailClient] = useState(false);
   const [showOrders, setShowOrders] = useState(false);
   const [clientID, setClientID] = useState("");
+  const [clientDetails, setClientDetails] = useState(undefined);
 
   const formik = useFormik({
     initialValues: {
-      name: "",
+      id: "",
     },
     onSubmit: (values) => {
-      setDetailClient(true);
-      setClientID(values.name);
+      setClientID(values.id);
+      const konkretnyKlient = data.find(
+        (client) => String(client.id) === String(values.id)
+      );
+      console.log("Konkretny klient", konkretnyKlient);
+      setClientDetails(konkretnyKlient);
     },
     // validationSchema: yupSchema, //wpięcie schematu walidacji
   });
@@ -29,10 +33,12 @@ const InvoicesAdd = () => {
 
   const handleOrders = () => {
     setShowOrders(true);
+    // przefiltrować po clientDetails . phone number czy cos
+    // data1
   };
 
-  console.log(clientID);
-  console.log(detailClient);
+  //   console.log(clientID);
+  //   console.log(detailClient);
   return (
     <div>
       <br />
@@ -41,13 +47,13 @@ const InvoicesAdd = () => {
       <div className="invicesAdd">
         <form onSubmit={formik.handleSubmit}>
           <select
-            name="name"
-            value={formik.values.name}
+            name="id"
+            value={formik.values.id}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
           >
             {data.map((el) => (
-              <option value={el.id}>
+              <option value={el.id} key={el.id}>
                 {" "}
                 {el.name} {el.surname}
               </option>
@@ -62,21 +68,21 @@ const InvoicesAdd = () => {
         ) : null}
       </div>
 
-      {detailClient ? (
+      {clientDetails ? (
         <div className="detailsID">
           <div>
-            <p>{data[clientID - 1].name}</p>
-            <p>{data[clientID - 1].surname}</p>
-            <p>{data[clientID - 1].street}</p>
-            <p>{data[clientID - 1].code}</p>
-            <p>{data[clientID - 1].city}</p>
-            <p>{data[clientID - 1].region}</p>
-            <p>{data[clientID - 1].imageURL}</p>
-            <p>{data[clientID - 1].number}</p>
+            <p>{clientDetails.name}</p>
+            <p>{clientDetails.surname}</p>
+            <p>{clientDetails.street}</p>
+            <p>{clientDetails.code}</p>
+            <p>{clientDetails.city}</p>
+            <p>{clientDetails.region}</p>
+            <p>{clientDetails.imageURL}</p>
+            <p>{clientDetails.number}</p>
           </div>
           <button onClick={handleOrders}>
-            Pokaż zamówienia klienta {data[clientID - 1].name}{" "}
-            {data[clientID - 1].surname}
+            Pokaż zamówienia klienta {clientDetails.name}{" "}
+            {clientDetails.surname}
           </button>
           <br />
           {showOrders ? (

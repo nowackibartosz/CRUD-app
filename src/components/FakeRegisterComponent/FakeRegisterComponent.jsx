@@ -28,7 +28,7 @@ const FakeRegisterComponent = () => {
     ///PMAIETAJ O CYKLU ZYCIA KOMPONENTU/////
     onSubmit: (values) => {
       const isUserLoginFree = users.some(
-        (user) => user["login"] === values.login
+        (user) => user.login === values.login
       );
 
       if (isUserLoginFree) {
