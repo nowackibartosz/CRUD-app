@@ -2,11 +2,12 @@ import React, { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useFormik } from "formik";
 // import { yupSchema } from "../Validation/Val";
-
+import { getAllOrders } from "../Serwis/orderService";
 import { getAllClients } from "../Serwis/clientService";
 
 const InvoicesAdd = () => {
   const [detailClient, setDetailClient] = useState(false);
+  const [showOrders, setShowOrders] = useState(false);
   const [clientID, setClientID] = useState("");
 
   const formik = useFormik({
@@ -21,10 +22,14 @@ const InvoicesAdd = () => {
   });
 
   const { data, isLoading } = useQuery(["clients"], getAllClients);
-
+  const { data1 } = useQuery(["orders"], getAllOrders);
   if (isLoading) {
     return <p>Loading...</p>;
   }
+
+  const handleOrders = () => {
+    setShowOrders(true);
+  };
 
   console.log(clientID);
   console.log(detailClient);
@@ -69,10 +74,34 @@ const InvoicesAdd = () => {
             <p>{data[clientID - 1].imageURL}</p>
             <p>{data[clientID - 1].number}</p>
           </div>
-          <button>
+          <button onClick={handleOrders}>
             Pokaż zamówienia klienta {data[clientID - 1].name}{" "}
             {data[clientID - 1].surname}
           </button>
+          <br />
+          {showOrders ? (
+            <table className="hihi">
+              <thead>
+                <tr>
+                  <th>id</th>
+
+                  <th>order</th>
+                  <th>description</th>
+                  <th>telefon zamawiającego</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr key={data1[clientID - 1].id}>
+                  <th>{data[clientID - 1].id}</th>
+
+                  <th>{data[clientID - 1].tele}</th>
+
+                  <th>{data[clientID - 1].body}</th>
+                  <th>{data[clientID - 1].description}</th>
+                </tr>
+              </tbody>
+            </table>
+          ) : null}
         </div>
       ) : null}
     </div>
