@@ -1,19 +1,21 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useFormik } from "formik";
 // import { yupSchema } from "../Validation/Val";
-import { addOrder } from "../Serwis/orderService";
+import { getSingleClient } from "../Serwis/clientService";
 import { getAllClients } from "../Serwis/clientService";
 
-const OrdersAdd = () => {
+const InvoicesAdd = () => {
+  const [detailClient, setDetailClient] = useState(false);
+  const [clientID, setClientID] = useState("");
+
   const formik = useFormik({
     initialValues: {
-      tele: "",
-      body: "",
-      description: "",
+      name: "",
     },
     onSubmit: (values) => {
-      addOrder(values);
+      setDetailClient(!detailClient);
+      setClientID(values.name);
     },
     // validationSchema: yupSchema, //wpięcie schematu walidacji
   });
@@ -24,67 +26,52 @@ const OrdersAdd = () => {
     return <p>Loading...</p>;
   }
 
+  console.log(clientID);
+
   return (
     <div>
-      <div>Add your new order</div>
       <br />
-      <div className="addOrders">
+      <div>Choose client</div>
+      <br />
+      <div className="invicesAdd">
         <form onSubmit={formik.handleSubmit}>
           <select
-            name="tele"
-            value={formik.values.tele}
+            name="name"
+            value={formik.values.name}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
           >
             {data.map((el) => (
-              <option value={el.number}>
+              <option value={el.id}>
                 {" "}
                 {el.name} {el.surname}
               </option>
             ))}
           </select>
-          <div>
-            <label htmlFor="body">body</label>
-            <input
-              type="text"
-              id="body"
-              name="body"
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              value={formik.values.body}
-            />
-          </div>
-          <div>
-            <label htmlFor="description">description</label>
-            <input
-              type="text"
-              id="description"
-              name="description"
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              value={formik.values.description}
-            />
-          </div>
-          <button type="submit">ORDER</button>
+
+          <button type="submit">Pokaż szczegóły klienta</button>
         </form>
 
         {formik.touched.tele && formik.errors.tele ? (
           <p style={{ color: "red" }}>{formik.errors.tele}</p>
         ) : null}
-
-        {/* <form action="/action_page.php">
-        <select id="client">
-          {.map((el) => (
-            <option value={el.numbe}>
-              {" "}
-              {el.name} {el.surname}
-            </option>
-          ))}
-        </select>
-      </form> */}
       </div>
+
+      {detailClient ? (
+        <div className="detailsID">
+          <p>{data[clientID].name}</p>
+          <p>{data[clientID].surname}</p>
+          <p>{data[clientID].street}</p>
+          <p>{data[clientID].code}</p>
+          <p>{data[clientID].city}</p>
+          <p>{data[clientID].region}</p>
+          <p>{data[clientID].imageURL}</p>
+          <p>{data[clientID].number}</p>
+        </div>
+      ) : null}
+      <div>hehehe</div>
     </div>
   );
 };
 
-export default OrdersAdd;
+export default InvoicesAdd;
