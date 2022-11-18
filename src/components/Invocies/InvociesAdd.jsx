@@ -4,7 +4,7 @@ import { useFormik } from "formik";
 // import { yupSchema } from "../Validation/Val";
 import { getAllOrders } from "../Serwis/orderService";
 import { getAllClients } from "../Serwis/clientService";
-import CheckoutPage from "./CheckoutPage/CheckoutPage"
+
 const InvoicesAdd = () => {
   const [showOrders, setShowOrders] = useState(false);
   const [clientID, setClientID] = useState("");
@@ -42,7 +42,7 @@ const InvoicesAdd = () => {
   return (
     <div>
 
-<CheckoutPage/>
+
       <br />
       <div>Choose client</div>
       <br />
