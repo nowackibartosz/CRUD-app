@@ -10,6 +10,7 @@ import Orders from "./components/Zad1/Orders/Orders";
 import OrdersAdd from "./components/Zad1/OrdersAdd";
 import OrdersId from "./components/Zad1/OrdersId";
 import InvociesAdd from "./components/Invocies/InvociesAdd";
+import Money from "./components/Money/Money";
 // import Invoice from "./components/Zad1/Invoice";
 
 import "./App.css";
@@ -30,9 +31,10 @@ import { useThemeContext } from "./components/ThemeContext/ThemeContext";
 import { AlertProvider } from "./components/AlertContext/AlertContext";
 import { Alert } from "./components/AlertContext/AlertContext";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import {Provider} from "react-redux";
-import {store} from "./redux"
-import {Redux} from "./components/Redux"
+import { Provider } from "react-redux";
+import { store } from "./redux";
+import { Redux } from "./components/Redux";
+
 
 const Invoice = React.lazy(() => import("./components/Zad1/Invoice"));
 
@@ -50,84 +52,85 @@ function App() {
 
   return (
     <Provider store={store}>
-    <div className={isDarkTheme ? "AppDark" : "App"}>
-      <ErrorBoundary fallback={<div>ErrorBoundary</div>}>
-        <Suspense fallback={<div>Lazy suspense</div>}>
-          <AlertProvider>
-            <Alert />
-            <Redux/>
-            <QueryClientProvider client={queryClient}>
-              {process.env.NODE_ENV === "development" && (
-                <ReactQueryDevtools
-                  position="top-right"
-                  initialIsOpen={false}
-                />
-              )}
-              <ThemeButton />
-              <AccountMenu />
-              <FakeRegisterComponent />
-
-              <FakeLoginComponent />
-              <BrowserRouter>
-                <Navigation />
-                <Routes>
-                  <Route
-                    element={
-                      <div>
-                        <Home />
-                      </div>
-                    }
-                    path=""
+      <div className={isDarkTheme ? "AppDark" : "App"}>
+        <ErrorBoundary fallback={<div>ErrorBoundary</div>}>
+          <Suspense fallback={<div>Lazy suspense</div>}>
+            <AlertProvider>
+              <Alert />
+              <Redux />
+              <QueryClientProvider client={queryClient}>
+                {process.env.NODE_ENV === "development" && (
+                  <ReactQueryDevtools
+                    position="top-right"
+                    initialIsOpen={false}
                   />
-                  <Route exact path="/clients" element={<Clients />}></Route>
-                  <Route
-                    exact
-                    path="/clients/add"
-                    element={<ClientsAdd />}
-                  ></Route>
-                  <Route
-                    exact
-                    path="/clients/:id"
-                    element={<ClientsId />}
-                  ></Route>
-                  <Route
-                    exact
-                    path="/clients/:id/edit"
-                    element={<ClientsIdEdit />}
-                  ></Route>
-                  <Route exact path="/orders" element={<Orders />}></Route>
-                  <Route
-                    exact
-                    path="/orders/:id"
-                    element={<OrdersId />}
-                  ></Route>
-                  <Route
-                    exact
-                    path="/orders/add"
-                    element={<OrdersAdd />}
-                  ></Route>
+                )}
+                <ThemeButton />
+                <AccountMenu />
+                <FakeRegisterComponent />
 
-                  <Route
-                    exact
-                    path="/invoices"
-                    element={
-                      <ProtectedWrapper>
-                        <Invoice />
-                      </ProtectedWrapper>
-                    }
-                  ></Route>
-                  <Route
-                    exact
-                    path="/invoices/add"
-                    element={<InvociesAdd />}
-                  ></Route>
-                </Routes>
-              </BrowserRouter>
-            </QueryClientProvider>
-          </AlertProvider>
-        </Suspense>
-      </ErrorBoundary>
-    </div>
+                <FakeLoginComponent />
+                <BrowserRouter>
+                  <Navigation />
+                  <Routes>
+                    <Route
+                      element={
+                        <div>
+                          <Home />
+                        </div>
+                      }
+                      path=""
+                    />
+                    <Route exact path="/clients" element={<Clients />}></Route>
+                    <Route
+                      exact
+                      path="/clients/add"
+                      element={<ClientsAdd />}
+                    ></Route>
+                    <Route
+                      exact
+                      path="/clients/:id"
+                      element={<ClientsId />}
+                    ></Route>
+                    <Route
+                      exact
+                      path="/clients/:id/edit"
+                      element={<ClientsIdEdit />}
+                    ></Route>
+                    <Route exact path="/orders" element={<Orders />}></Route>
+                    <Route
+                      exact
+                      path="/orders/:id"
+                      element={<OrdersId />}
+                    ></Route>
+                    <Route
+                      exact
+                      path="/orders/add"
+                      element={<OrdersAdd />}
+                    ></Route>
+
+                    <Route
+                      exact
+                      path="/invoices"
+                      element={
+                        <ProtectedWrapper>
+                          <Invoice />
+                        </ProtectedWrapper>
+                      }
+                    ></Route>
+                    <Route
+                      exact
+                      path="/invoices/add"
+                      element={<InvociesAdd />}
+                    ></Route>
+                    <Route exact path="/money" element={<div> <Money/></div>}></Route>
+                  </Routes>
+                </BrowserRouter>
+              </QueryClientProvider>
+            </AlertProvider>
+          </Suspense>
+        </ErrorBoundary>
+      </div>
     </Provider>
   );
 }

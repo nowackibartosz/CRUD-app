@@ -8,11 +8,17 @@ import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import Tooltip from "@mui/material/Tooltip";
+import { Container } from "@mui/material";
+import { Link } from "react-router-dom";
+import { useUserContext } from "../UserContext/UserContext";
+import { useSelector } from "react-redux";
 
 import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
 // import { useUserContext } from "../UserContext/UserContext";
 export default function AccountMenu() {
+  const { isLogged, users } = useUserContext();
+  const money = useSelector((state) => state.money.value);
   const [anchorEl, setAnchorEl] = React.useState(null);
   // const { logOut } = useUserContext();
   const open = Boolean(anchorEl);
@@ -76,7 +82,19 @@ export default function AccountMenu() {
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
         <MenuItem>
-          <Avatar /> Profile
+          {isLogged ? (
+            <Container
+              onClick={() => {
+                console.log("onclick avatart");
+              }}
+              align="center"
+            >
+              <Avatar alt="avatar" src={users[0].avatar} />
+              {users[0].name} {users[0].surname}
+              <br />
+              <Link to="/money"> {money}</Link>
+            </Container>
+          ) : null}
         </MenuItem>
 
         <Divider />
