@@ -4,14 +4,14 @@ export const moneySlice=createSlice({
     name: "money",
     initialState: { value: 0},
     reducers: {
-        WithdrawMoney: (state)=>{
+        withdrawMoney: (state)=>{
             state.value -= 0;
         },
-        DepositMoney: (state)=>{
+        depositMoney: (state)=>{
             state.value += 0;
         },
        
     }
 })
-export const {showMoney}=moneySlice.actions;
+export const {withdrawMoney, depositMoney}=moneySlice.actions;
 export default moneySlice.reducer;
