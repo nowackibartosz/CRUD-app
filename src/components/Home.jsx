@@ -21,7 +21,7 @@ const Home = () => {
         <br />
       </Container>
 
-      <Link to="/money">Invoices Add</Link>
+      <Link to="/money">Money</Link>
       <div>
         <br />
         {money}
