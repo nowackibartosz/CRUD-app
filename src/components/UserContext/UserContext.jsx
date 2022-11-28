@@ -10,20 +10,12 @@ export const UserProvider = ({ children }) => {
     // znalezc usera po username, i sprawdzic jego haslo
 
     setIsLogged(true);
-   
   };
 
   const logOut = () => {
     setIsLogged(false);
   };
 
-  const handleRegister = (values) => {
-    //TODO czy istnieje jak istnieje to nie mozesz zarejestrować
-    // setUsers(prev=>[...prev,values])
-
-
-
-  };
   return (
     <UserContext.Provider value={{ isLogged, users, setUsers, logIn, logOut }}>
       {children}

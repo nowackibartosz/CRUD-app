@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useFormik } from "formik";
 // import { yupSchema } from "../Validation/Val";
@@ -9,6 +9,8 @@ const InvoicesAdd = () => {
   const [showOrders, setShowOrders] = useState(false);
   const [clientID, setClientID] = useState("");
   const [clientDetails, setClientDetails] = useState(undefined);
+
+  const [ordi, setOrdi] = useState("");
 
   const formik = useFormik({
     initialValues: {
@@ -33,6 +35,13 @@ const InvoicesAdd = () => {
 
   const handleOrders = () => {
     setShowOrders(true);
+    // const data9 = data1.filter((el) => el.tele === clientDetails.number);
+
+    console.log(clientDetails.number);
+    console.log(data1);
+
+    // console.log(el.tele === clientDetails.number);
+
     // przefiltrować po clientDetails . phone number czy cos
     // data1
   };
@@ -41,8 +50,6 @@ const InvoicesAdd = () => {
   //   console.log(detailClient);
   return (
     <div>
-
-
       <br />
       <div>Choose client</div>
       <br />
@@ -99,13 +106,14 @@ const InvoicesAdd = () => {
                 </tr>
               </thead>
               <tbody>
-                <tr key={data1[clientID - 1].id}>
-                  <th>{data[clientID - 1].id}</th>
+                {/* <tr key={data1.id}>
+                  <th>{data1.body}</th> */}
 
-                  <th>{data[clientID - 1].tele}</th>
+                <tr>
+                  <th></th>
 
-                  <th>{data[clientID - 1].body}</th>
-                  <th>{data[clientID - 1].description}</th>
+                  <th></th>
+                  <th></th>
                 </tr>
               </tbody>
             </table>
