@@ -9,8 +9,8 @@ const InvoicesAdd = () => {
   const [showOrders, setShowOrders] = useState(false);
   const [clientID, setClientID] = useState("");
   const [clientDetails, setClientDetails] = useState(undefined);
-
   const [ordi, setOrdi] = useState("");
+
 
   const formik = useFormik({
     initialValues: {
@@ -28,17 +28,18 @@ const InvoicesAdd = () => {
   });
 
   const { data, isLoading } = useQuery(["clients"], getAllClients);
-  const { data1 } = useQuery(["orders"], getAllOrders);
+  const { data: data1 } = useQuery(["orders"], getAllOrders);
   if (isLoading) {
     return <p>Loading...</p>;
   }
 
   const handleOrders = () => {
     setShowOrders(true);
-    // const data9 = data1.filter((el) => el.tele === clientDetails.number);
+    const data9 = data1.filter((el) => el.tele === clientDetails.number);
 
+    setOrdi(data9);
     console.log(clientDetails.number);
-    console.log(data1);
+    console.log(ordi);
 
     // console.log(el.tele === clientDetails.number);
 
@@ -46,8 +47,6 @@ const InvoicesAdd = () => {
     // data1
   };
 
-  //   console.log(clientID);
-  //   console.log(detailClient);
   return (
     <div>
       <br />
@@ -95,6 +94,8 @@ const InvoicesAdd = () => {
           </button>
           <br />
           {showOrders ? (
+
+            
             <table className="hihi">
               <thead>
                 <tr>
@@ -106,10 +107,9 @@ const InvoicesAdd = () => {
                 </tr>
               </thead>
               <tbody>
-                {/* <tr key={data1.id}>
-                  <th>{data1.body}</th> */}
+                <tr key={ordi.id}>
+                  <th>{ordi.body}</th>
 
-                <tr>
                   <th></th>
 
                   <th></th>
