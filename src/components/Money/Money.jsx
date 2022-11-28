@@ -1,51 +1,39 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { withdrawMoney, depositMoney } from "../../redux/moneySlice";
-import { useFormik } from "formik";
-const Money = () => {
+import { useState } from "react";
 
+const Money = () => {
   const dispatch = useDispatch();
   const money = useSelector((state) => state.money.value);
 
-  const formik = useFormik({
-    initialValues: {
-      cash: "",
-      
-    },
+  const [formNumber, setFormNumber] = useState();
 
-    ///PMAIETAJ O CYKLU ZYCIA KOMPONENTU/////
-    onSubmit: (values) => {
-      
-    },
-
-    // validationSchema: yupSchema,
-  });
-
-
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("ok");
+    console.log(e.target.value);
+    dispatch(withdrawMoney(e.target.value));
+  };
 
   return (
-   <div>
+    <div>
       <button onClick={() => dispatch(withdrawMoney())}>-</button>
       {money}
 
       <button onClick={() => dispatch(depositMoney())}>+</button>
 
-
-      <form onSubmit={formik.handleSubmit}>
-        <div>
-          <label htmlFor="login">Deposit</label>
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="">
           <input
-            type="text"
-            id="deposit"
-            name="deposit"
-            onChange={dispatch(withdrawMoney())}
-            onBlur={formik.handleBlur}
-            value={formik.values.login}
+            type="number"
+            placeholder="wypłać hajs"
+            onChange={(e) => dispatch(withdrawMoney(e.target.value))}
           />
-        </div>
-        
-</form>
-        </div>
+          <button type="submit">OK</button>
+        </label>
+      </form>
+    </div>
   );
 };
 
