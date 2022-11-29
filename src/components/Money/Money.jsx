@@ -1,35 +1,40 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { withdrawMoney, depositMoney } from "../../redux/moneySlice";
-import { useState } from "react";
 
 const Money = () => {
   const dispatch = useDispatch();
   const money = useSelector((state) => state.money.value);
 
-  const [formNumber, setFormNumber] = useState();
-
-  const handleSubmit = (e) => {
+  const handleWithdraw = (e) => {
     e.preventDefault();
     console.log("ok");
-    console.log(e.target.value);
-    dispatch(withdrawMoney(e.target.value));
+    dispatch(withdrawMoney(Number(e.target.value)));
+
+    console.log(money);
+  };
+  const handleDeposit = (e) => {
+    e.preventDefault();
+    console.log("ok");
+    dispatch(depositMoney(Number(e.target.value)));
+
+    console.log(money);
   };
 
   return (
     <div>
-      <button onClick={() => dispatch(withdrawMoney())}>-</button>
       {money}
-
-      <button onClick={() => dispatch(depositMoney())}>+</button>
-
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleWithdraw}>
         <label htmlFor="">
-          <input
-            type="number"
-            placeholder="wypłać hajs"
-            onChange={(e) => dispatch(withdrawMoney(e.target.value))}
-          />
+          <input type="number" placeholder="withdraw" />
+
+          <button type="submit">OK</button>
+        </label>
+      </form>
+      <form onSubmit={handleDeposit}>
+        <label htmlFor="">
+          <input type="number" placeholder="deposit" />
+
           <button type="submit">OK</button>
         </label>
       </form>
