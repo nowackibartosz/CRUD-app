@@ -8,7 +8,7 @@ export const moneySlice = createSlice({
       state.value -= Number(action.payload);
     },
     depositMoney: (state, action) => {
-      state.value += Number(action.payload);
+      state.value += action.payload;
     },
   },
 });

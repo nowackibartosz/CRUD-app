@@ -73,31 +73,37 @@
       "tele": "85567888",
       "body": "trawa",
       "description": "koszenie trawy",
-      "id": 1
+      "id": 1,
+      "paid": false
+      
     },
     {
       "tele": "8888",
       "body": "beton",
       "description": "4kg beton",
-      "id": 2
+      "id": 2,
+      "paid": false
     },
     {
       "tele": "788366088",
       "body": "pizza",
       "description": "na grubym",
-      "id": 3
+      "id": 3,
+      "paid": false
     },
     {
       "tele": "788366088",
       "body": "makaron",
       "description": "dużo makaronu",
-      "id": 4
+      "id": 4,
+      "paid": false
     },
     {
       "tele": "111222333",
       "body": "tona pisaku",
       "description": "iarnisty",
-      "id": 5
+      "id": 5,
+      "paid": false
     }
   ],
   "faktury": [
