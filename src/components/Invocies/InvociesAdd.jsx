@@ -41,10 +41,8 @@ const InvoicesAdd = () => {
     console.log(clientDetails.number);
     console.log(ordi);
 
-    // console.log(el.tele === clientDetails.number);
 
-    // przefiltrować po clientDetails . phone number czy cos
-    // data1
+  /////?????? ordi/data9/ filter???////////??/////
   };
 
   return (
