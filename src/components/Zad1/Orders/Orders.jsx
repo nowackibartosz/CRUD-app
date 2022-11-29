@@ -1,4 +1,3 @@
-
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import "./Orders.css";
 
@@ -23,13 +22,9 @@ const style = {
   pb: 3,
 };
 
-
-
-
-
 const Orders = () => {
   const { data, isLoading, error } = useQuery(["orders"], getAllOrders);
-  const queryClient = useQueryClient()
+  const queryClient = useQueryClient();
   const [open, setOpen] = useState(false);
   const [elModal, setElModal] = useState("");
   const handleOpen = () => {
@@ -52,6 +47,7 @@ const Orders = () => {
             <th>order</th>
             <th>description</th>
             <th>telefon zamawiającego</th>
+            <th>opłacone?</th>
           </tr>
         </thead>
         <tbody>
@@ -65,12 +61,19 @@ const Orders = () => {
               <th>{el.body}</th>
               <th>{el.description}</th>
               <th>
-                <Button onClick={() => {
+                <input type="checkbox" checked={el.paid} />
+
+                {/* // ={el.paid ? "selected" : null} */}
+              </th>
+              <th>
+                <Button
+                  onClick={() => {
                     handleOpen();
                     setElModal(el.id);
-                    
-                  }}>DELETE</Button>
-                
+                  }}
+                >
+                  DELETE
+                </Button>
               </th>
             </tr>
           ))}
@@ -89,10 +92,9 @@ const Orders = () => {
             <Button
               onClick={() => {
                 handleDelete(elModal);
-               
-                queryClient.invalidateQueries({ queryKey: ['orders'] })
+
+                queryClient.invalidateQueries({ queryKey: ["orders"] });
                 handleClose();
-                
               }}
             >
               YES
