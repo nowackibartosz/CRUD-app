@@ -9,8 +9,7 @@ const InvoicesAdd = () => {
   const [showOrders, setShowOrders] = useState(false);
   const [clientID, setClientID] = useState("");
   const [clientDetails, setClientDetails] = useState(undefined);
-  const [ordi, setOrdi] = useState("");
-
+  const [ordi, setOrdi] = useState([]);
 
   const formik = useFormik({
     initialValues: {
@@ -38,12 +37,11 @@ const InvoicesAdd = () => {
     const data9 = data1.filter((el) => el.tele === clientDetails.number);
 
     setOrdi(data9);
-    console.log(clientDetails.number);
-    console.log(ordi);
 
-
-  /////?????? ordi/data9/ filter???////////??/////
+    /////?????? ordi/data9/ filter???
+    ////////??/////
   };
+  // default value dla select//
 
   return (
     <div>
@@ -58,12 +56,15 @@ const InvoicesAdd = () => {
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
           >
-            {data.map((el) => (
-              <option value={el.id} key={el.id}>
-                {" "}
-                {el.name} {el.surname}
-              </option>
-            ))}
+            <>
+              <option>Prosze wybrać</option>
+              {data.map((el) => (
+                <option value={el.id} key={el.id}>
+                  {" "}
+                  {el.name} {el.surname}
+                </option>
+              ))}
+            </>
           </select>
 
           <button type="submit">Pokaż szczegóły klienta</button>
@@ -92,8 +93,6 @@ const InvoicesAdd = () => {
           </button>
           <br />
           {showOrders ? (
-
-            
             <table className="hihi">
               <thead>
                 <tr>
@@ -105,14 +104,21 @@ const InvoicesAdd = () => {
                 </tr>
               </thead>
               <tbody>
-                <tr key={ordi.id}>
-                  <th>{ordi.body}</th>
+                {ordi.length > 0
+                  ? ordi.map((el) => {
+                      console.log(el);
+                      return (
+                        <tr key={el.id}>
+                          <td>{el.body}</td>
 
-                  <th></th>
+                          <td></td>
 
-                  <th></th>
-                  <th></th>
-                </tr>
+                          <td></td>
+                          <td></td>
+                        </tr>
+                      );
+                    })
+                  : null}
               </tbody>
             </table>
           ) : null}
