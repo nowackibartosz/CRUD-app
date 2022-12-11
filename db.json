@@ -1,17 +1,6 @@
 {
   "clients": [
     {
-      "name": "Bart",
-      "surname": "Nowacki",
-      "street": "langiewicza",
-      "code": "45-988",
-      "city": "Wroclaw",
-      "region": "Wroclawski",
-      "imageURL": "imageimage",
-      "number": "8888",
-      "id": 1
-    },
-    {
       "name": "Niemasz",
       "surname": "Niemasz",
       "street": "Wieluńska",
@@ -65,6 +54,17 @@
       "imageURL": "imageimage",
       "number": "8888",
       "id": 6
+    },
+    {
+      "name": "MASLO",
+      "surname": "MASLOWSKI",
+      "street": "Maslana 8",
+      "code": "51-107",
+      "city": "Maslo",
+      "region": "Maslowice",
+      "imageURL": "maslomaslo.jpg",
+      "number": "51423575",
+      "id": 8
     }
   ],
   "orders": [
