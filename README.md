@@ -7,7 +7,7 @@ CRUD Application version beta
 <br>
 
 <br>
-![schema](./img/dbSchema.png)
+![schema](./img/111.jpg)
 <br>
 
 # Technologies:
