@@ -4,7 +4,7 @@ import { useFormik } from "formik";
 import { useAlertContext } from "../AlertContext/AlertContext";
 
 const FakeLoginComponent = () => {
-  const { isLogged, users, logIn } = useUserContext();
+  const { users, logIn } = useUserContext();
   const { showNotification } = useAlertContext();
   const formik = useFormik({
     initialValues: {
