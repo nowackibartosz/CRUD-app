@@ -12,17 +12,6 @@
       "id": 2
     },
     {
-      "name": "Bogdan",
-      "surname": "Gurby",
-      "street": "Legnicka",
-      "code": "51-107",
-      "city": "Wrocław",
-      "region": "dolnośląskie",
-      "imageURL": "zdolnyslask.pl",
-      "number": "788366088",
-      "id": 3
-    },
-    {
       "name": "Adam",
       "surname": "Jochemczyk",
       "street": "Leśna",
@@ -68,13 +57,6 @@
     }
   ],
   "orders": [
-    {
-      "tele": "85567888",
-      "body": "trawa",
-      "description": "koszenie trawy",
-      "id": 1,
-      "paid": false
-    },
     {
       "tele": "8888",
       "body": "beton",
